@@ -1,0 +1,87 @@
+Interviewer:
+Can you see the... No, you can't. All right. Can you see the figure here?
+
+Leader 4:
+Yeah.
+
+Interviewer:
+So this is the process workflow we proposed based on our experience in the team. So can you talk about the challenges we have in the ANONYMIZED_MODELNAME team based on this workflow?
+
+Leader 4:
+What do you mean changes? We haven't...
+
+Interviewer:
+I mean the challenges.
+
+Leader 4:
+Oh, challenges. Okay. Okay. Yeah. So I think challenges is model analysis in existing implementations. Yeah. I think for ANONYMIZED_MODELNAME, for the existing implementations, I feel like there were many things that we already had in for ANONYMIZED_MODELNAME in our repository, but first I feel like you should have gotten first the familiarity with what we have is also important because you might be having things that are already present with the [inaudible 00:01:19]. But if you're not sure what that does or how is that useful and how to connect your new implementations with the old, then I think it will waste more time rather than being useful. So that is one of the things. Even though if you are whenever deciding a model, I feel like if you're using existing implementations, we should take time to familiarize ourselves with the existing things that we already have, even though they're getting redone.
+
+Leader 4:
+I think for challenge to model implementation and testing... I think one of the unit testing was. I think for ANONYMIZED_MODELNAME unit testing was easy. And it is usually the case, because if you're just trying to check what you're writing, it is easier than always trying to differentiate your test and match it with some other model. Because the way, for example, with ANONYMIZED_MODELNAME we had a ANONYMIZED_DL_FRAMEWORK_2 implementation and we had a ANONYMIZED_MODELNAME implementation in ANONYMIZED_DL_FRAMEWORK_1.
+
+Leader 4:
+So both of those implementations, even though we are doing the same model, the way they both are organized are very different. So sometimes differential testing can get difficult because the way that both the models are working is different. So I think that was one of the main challenges based in ANONYMIZED_MODELNAME. For example, for the last function, we're still not able to differential test our ANONYMIZED_MODELNAME loss with the ANONYMIZED_DL_FRAMEWORK_2 version because it's very complicated.
+
+Leader 4:
+What else? For model, I think differential testing for the architecture is pretty easy because it is easier to differential test the layers and the architectures through the number of parameters. However, the loss function in all of those parts are difficult, I think.
+
+Leader 4:
+Yeah.
+
+Interviewer:
+So do you think there it's challenging the testing here, after the component integration?
+
+Leader 4:
+After the component integration?
+
+Interviewer:
+I think this one is specifically for the training.
+
+Leader 4:
+Okay. So you're asking me... What are you asking me to talk about, again? No. So what are you asking me to talk about again?
+
+Interviewer:
+After the component integration, we are trying to match the performance to the paper and the research prototype. So can you talk more about that?
+
+Leader 4:
+Yeah. So whenever you're trying to match, for example, in ANONYMIZED_MODELNAME there are so many different combinations, first, that you have to match ANONYMIZED_MODELNAME with yolov3 baseline. After that you add one more step when you may match another results. You'll add a copy-coupled head and match another result.
+
+Leader 4:
+Sometimes it gets difficult when the existing implementation that we are referring to, for example, in our case in ANONYMIZED_MODELNAME, they don't have a baseline. They don't have the implementation for the baseline. So we have to figure out by ourselves. Paper also doesn't have that much information about the baseline. So for example, if you're not able to even get the baseline, then going to the next part is hard because the ANONYMIZED_MODELNAME and the ANONYMIZED_DL_FRAMEWORK_2 version has just everything combined, right? So matching the one-on-one results gets a little difficult.
+
+Leader 4:
+But I think referring to the paper helps, I guess. But still there's sometimes that you just have to make guesses of what they're doing whenever you're trying to even read the paper. Every time we read it, we find new information. We try to read it virtual and go with virtual. "Oh, I think this is what they're trying to say. Or they might be using data aug for before, but then they're not." So yeah, there are some assumptions or I guess some guesses that you have to make and just try two, three ways to see what they actually did and how to actually match the results.
+
+Interviewer:
+Yeah. So except for the three challenges here, do think there are more challenges in the other boxes?
+
+Leader 4:
+Let me think. (silence)
+
+Leader 4:
+I think one of the challenges... It's not really... I mean, it is kind of a challenge, but it's related to reproducibility. There are certain languages, like for example, ANONYMIZED_DL_FRAMEWORK_2 is more broader, I think, than ANONYMIZED_DL_FRAMEWORK_1. So there are some operations in ANONYMIZED_DL_FRAMEWORK_1 which you can do. For example, in ANONYMIZED_DL_FRAMEWORK_1 whenever you initialize a tensor, you cannot change its size after that. So you had to know the shape of the tensor before you're working. So things like that. That can make things a little bit difficult. There are definitely ways to go around it, but it's just can be a little bit more work and a challenge in itself.
+
+Leader 4:
+For example, in dynamic key matching, we are going to face that challenge because making a code work for dynamic key matching on TPU, I think it's going to be a challenge because the way it is implemented in ANONYMIZED_DL_FRAMEWORK_2 is they keep on appending to their tensor and keep on adding to it which we cannot do in ANONYMIZED_DL_FRAMEWORK_1. So we have to spend time looking into how. That thing itself is simple, but to do it in ANONYMIZED_DL_FRAMEWORK_1 is a challenge in itself.
+
+Interviewer:
+Okay.
+
+Leader 4:
+Yeah.
+
+Interviewer:
+Yeah. So is that all?
+
+Leader 4:
+Yeah, I guess. Okay.
+
+Interviewer:
+Okay. Thank you so much.
+
+Leader 4:
+Yeah.
+
+Interviewer:
+Let me stop the recording. (silence)
+

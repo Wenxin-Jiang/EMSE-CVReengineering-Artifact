@@ -1,0 +1,249 @@
+Leader 5:
+Okay.
+
+Interviewer:
+Okay. So the first question is, can you tell me your background in machine learning and software engineering both in academia and in industry?
+
+Leader 5:
+I won't say I have much industry experience since I didn't do a internship, but in [Camsquare Hotel 00:00:54] couple of machine learning, took somewhat software engineering oriented projects. So one of the earlier ones was LPCVC, the Low-Power Computer Vision Challenge. They help with the grading of submissions for one of the tracks, a Facebook UAV track, Unmanned Aerial Vehicle track. So yeah, that's the earlier once a month course I helped out on. A TensorFlow team as well. Yeah, internship.
+
+Interviewer:
+So have you ever reproduced any machine learning model use research paper or research prototypes?
+
+Leader 5:
+Yeah. Well, one of them is of course ANONYMIZED_MODELNAME_1. Also, outside of class or outside of Camsquare for one of my classes, I reproduce SlimANONYMIZED_MODELNAME_1v3, which is part of the ANONYMIZED_MODELNAME_1 family [inaudible 00:02:07] by the same people as the ANONYMIZED_MODELNAME_1 papers. And it's just a lighter version of ANONYMIZED_MODELNAME_1v3, so it's a lot smaller level without too much loss in accuracy. But yeah, it's pretty similar to ANONYMIZED_MODELNAME_1, I would say.
+
+Interviewer:
+Yeah. That's great. So the next set of questions is related to machine learning reproducibility process. So we are trying to understand the process that software engineers follows as they try to bring research results into their organization. So first, can you talk me through the process that your team follows to implement a state-of-the-art model in house?
+
+Leader 5:
+Well, I haven't actually worked on any groups that made a new model from scratch, but I talked to some of the PhD students on their team that did create a new layer for machine learning model and stuff like that. So in that case, it's mainly the math behind it. So trying to figure out ways that you can more efficiently do the same thing, for example. So one of the PhD students basically made a masking convolution layer. So basically more efficiently computes a convolution if there's lots of zeros and the Kernel. It's a little bit more efficient essentially.
+
+Interviewer:
+Okay. So now I may share a model to you, which might be similar to you. So do you think this is an accurate model or if you will change something based on your own process of reproduced machine learning model?
+
+Leader 5:
+It's accurate.
+
+Interviewer:
+Yeah.
+
+Leader 5:
+Already went over this one.
+
+Interviewer:
+So except for the boxes here, do you have any other suggestions or any other thinking about this process?
+
+Leader 5:
+No. [inaudible 00:05:11] again was for building considerations that's across different frameworks?
+
+Interviewer:
+Yeah.
+
+Leader 5:
+Okay.
+
+Interviewer:
+So next set of questions is on the pitfalls in machine learning reproducibility process. So we are trying to find some hotspots in this process. So the first question here is, are there any hotspots in the machine learning reproducibility process? For example, understanding the paper, model, or implement the loss function or data pipeline optimization.
+
+Leader 5:
+So you're saying in terms of reproducing the paper itself?
+
+Interviewer:
+Yeah.
+
+Leader 5:
+I mean, I feel like it gets a bit harder if the original implementation doesn't have any documentation essentially. So a lot of the work is figuring out what they did from just the paper and the implementation, which is not exactly clear what they're doing. In some cases, it might not match exactly what they said in the paper because they made changes to make it more efficient or they realized they had a bug or something after the paper was published. So the hard part is figuring out what they did, and then trying to make that or make the same thing essentially.
+
+Interviewer:
+Okay. So can you think about the most recent error that you find in loss function?
+
+Leader 5:
+We mainly worked on loss function, but let me think.
+
+Interviewer:
+Can you describe any other challenges that you met except for documentation, maybe in the model or in the data pipeline?
+
+Leader 5:
+Well, in the data pipeline, one of the big challenges is that the data pipeline is not deterministic, it's random. So it's hard to make test cases for it nor to see if it matches the digital limitation, because you can't do differential testing because it's random.
+
+Interviewer:
+How did you address this challenge?
+
+Leader 5:
+For most of the time, we just compared the images that came out manually. Just see if they seem similar. But that's not really strong enough, so what we ended up doing was looking through the code, the two implementations, and seeing if line by line, they corresponded some way, essentially.
+
+Interviewer:
+So is there any challenges that you can think about during the optimization of the modal?
+
+Leader 5:
+So that's debugging it to make sure that it's the fastest possible essentially or-
+
+Interviewer:
+Yeah, improve the speed and accuracy.
+
+Leader 5:
+Well, in mainly the models, the number of layers and the number of weights is what determines the speed most of the time if the framework is the same. But there are like a couple of ways that we improve the speed of prediction. So one of the ways was that basically, we need a multiprocessing ThreadPool, essentially. Let's say that there's a video stream that is coming in, you can have three of the same model doing the work across all three different copies, essentially. So then that boosts the speed if you don't care too much about memory. But that's a trade off between memory and speed.
+
+Interviewer:
+So, what are two things that you think would make the process more easier for you to identify the bugs in your implementation?
+
+Leader 5:
+The unit testing was probably a good way to end up finding out the bugs, especially different field testing. If there was another Python implementation available for a center, different pool testing really helped a lot in that case.
+
+Interviewer:
+Yeah. Okay. So the next set of questions is on effective reproducibility practices. So we would like to know what practice you and your team adopt in your engineering process. So what changes could your teammates make that would make the process more effective?
+
+Leader 5:
+Well, we are setting aside a lot of time at the beginning of the project in order to understand the original implementation, how it works, the different pieces that make up that implementation, the different pieces that you already have implemented. So see if you can reuse any code from previous projects. So if you do that, it saves a lot of times later on because then you're already starting from somewhere essentially. You're not starting from nothing.
+
+Interviewer:
+So how many time did you spend to get familiar with each other and work smoothly with each other?
+
+Leader 5:
+Are you saying with the paper itself or the team?
+
+Interviewer:
+Yeah.
+
+Leader 5:
+Oh, the team or...
+
+Interviewer:
+Okay.
+
+Leader 5:
+I guess we just worked on it for a bit and we just got familiar with each other. But for the paper, it took a couple of weeks for each paper basically, to read through the paper, read through the implementation and understand their pieces. So probably four weeks maybe for each.
+
+Interviewer:
+Okay. What could other open-source engineers do differently in their implementations? So this like open source projects or open-sourced implementations from GitHub or other sources.
+
+Leader 5:
+What they can do differently in terms of-
+
+Interviewer:
+To help your process.
+
+Leader 5:
+Currently, we don't really have a way in which we have outside collaboration yet.
+
+Interviewer:
+Yeah, that's fine.
+
+Leader 5:
+Someone actually asked that, but we just basically said, "Go over to ANONYMIZED_COMPANY_NAME. Go to the main [inaudible 00:14:12] that ANONYMIZED_COMPANY_NAME has." We did bounce a couple of ideas where they can just help out on a couple of pieces of code if they want to, but it just got a bit complicated, at least for the university project.
+
+Interviewer:
+And what do you think machine learning researchers can do differently in their papers or their prototypes to help you reproduce work?
+
+Leader 5:
+Documentation is definitely the biggest thing that would help, because obviously you can't fit everything that you want to talk about in the paper. Maybe also add read mes for this document.
+
+Interviewer:
+So does documentation include the algorithms of model as well as the environment they used when they implemented their own model?
+
+Leader 5:
+Yeah, it should include. ANONYMIZED_COMPANY_NAME put out a list of sample template read me, that was really useful. So if I remember correctly, it has a description of what the model does first, and then it goes and gives the sample pre-trained model itself, links to that, where he can download it, and then it has the environment set up and then the list of the authors. I think that's the first one that you put out, but I think he added a lot more useful information as well. Yeah, that's really useful when trying to first set up the project itself, if you don't know anything about the model and just want to see how it works.
+
+Interviewer:
+Yeah. So is there a stopping criteria in your group? That means, how did your team balance the accuracy and the cost of the model?
+
+Leader 5:
+That's probably more to deal with someone making a completely new model as opposed to reproducing the model, right?
+
+Interviewer:
+Yeah, reproducing model.
+
+Leader 5:
+Oh, in reproducing model. I mean, we just try to match the accuracy of the paper, or at least that's what our team tries to do. What do you mean by cost? Do you mean just the-
+
+Interviewer:
+The cost of money or the costs of time.
+
+Leader 5:
+Oh. Yeah, that makes sense. We try to make it so that the accuracy matches the original paper. We're still a bit off, but for us ANONYMIZED_COMPANY_NAME made that call. I think it was just after a certain point, they're like, "Okay, this is high enough. So within 1%, 2%, that's good enough. We don't need to spend too much more money, essentially." That's how they made the call.
+
+Interviewer:
+So what tools do you think could software engineer researchers build to help you in this reproducibility process?
+
+Leader 5:
+Well, the big thing is documentation. Something similar to the linter that the software engineering team was working on would be very useful. Especially if it was able to pick up on more fine grain details that the types of the variables can't see themselves. Variable could be a tensor, but it would be useful in the documentation if it also gave the shape of the tensor as well. So basically how big it is, the data types of the feel to that tensor. And if it's like a bounding box, which format is it in? Is it center with height or essentially both the corners? Basically, that information is useful in understanding what the code does and how to use it that most standard linters don't have.
+
+Interviewer:
+Okay. So did you ever use some tools to visualize your data or visualize your model?
+
+Leader 5:
+We just manually did it through standard libraries like Matplotlib essentially, just to show images from the data pipeline. But yeah, we didn't use any Flashlight tools.
+
+Interviewer:
+Okay. So the last set of questions is a comparison between machine learning reproducibility process and other engineering process. For example, general machine learning process and broader software engineering process. So we are trying to find the specific feature of machine learning reproducibility process here. So what do you think are the different aspects of machine learning reproducibility compared to general machine learning process?
+
+Leader 5:
+Well, I think the big thing is it's extremely costly in order to find out if your implementation matches the original implementation, because you need to go through and train the entire model. So, that's a big difference. If it's a website, you can just pull up the website and see if it matches, or you can make test cases to see if the implementation code is correct. But for machine learning model, you don't really know what it is. And you can load in the weights from the original implementation or to see if the model itself is right, but all the code around it, the data pipeline and the loss function, you can't quite know if it is right without training it. So that's a big difference between standard code and machine learning code in terms of testing.
+
+Interviewer:
+So what do you think is the different aspects of reproducing process compared to a more broader software engineering process?
+
+Leader 5:
+You mean, what's different terms of what we need to do essentially?
+
+Interviewer:
+Yeah.
+
+Leader 5:
+Well, definitely a lot more time with training your model. It is a lot more heavy on the math behind the model in terms of what you need to look through or to see if your model matches. You don't just look at the code by itself, essentially. You also need to think about the math behind it especially if you're coming from a different framework into TensorFlow or other way around. There are, so I'd say it's pretty similar, I think.
+
+Interviewer:
+There are some engineers who are experts in software engineering, but novice in machine learning. So if they are involved in machine learning reproducibility process, do you have some recommendation or suggestions to them?
+
+Leader 5:
+Recommendations to software engineers for what to do?
+
+Interviewer:
+Yeah.
+
+Leader 5:
+Reproduce machine learning, okay. Well, I would say definitely look through the paper first. Understand conceptually what is going on. A high level and just work your way down to understand what's going on in your component, and then go from there. So definitely spend a lot of time understanding the paper.
+
+Interviewer:
+So do you think it's also important to spend a lot of time understanding the source code or just try to reproduce the result by the engineers themselves first and then compares their implementation to the model?
+
+Leader 5:
+It's definitely really good to look at the source code, because oftentimes the original people who made the implementation made certain engineering decisions. And we ran into this when we're working on ANONYMIZED_MODELNAME_1_2. So we noticed that they moved a piece of code that was originally supposed to be in the data pipeline for creating the heat maps for the object heat maps. So just where the objects are located in the image, essentially, as a guess and distributions. Basically, they moved that code from the data pipeline over to the loss function.
+
+Leader 5:
+The heat map is a large array, so it takes a large amount of network in order to move it over from the compute engine to the TPU. And basically to save on that, they moved that code over to the loss function, because loss function will be done on the TPU, so it would save bandwidth, essentially. So, it's often good to look at the original implementation and see why they made certain decisions like that, because you don't want to do the same mistakes that the engineers already did and realized didn't work, before having to go back to their original code.
+
+Interviewer:
+Yeah. So there is a similar question here, do you have any recommendations to those who are experts in machine learning but novice in software engineering?
+
+Leader 5:
+Well, for them, I would say improve documentation. Definitely make sure that it's really clear, what each frame there is essentially, in terms of, as I said, shape, data type, what it does in the model, essentially.
+
+Interviewer:
+Okay. So last question is, are there any other questions that you would like to know or you would like to ask other engineers? So these engineers can be from machine learning community or software engineering community.
+
+Leader 5:
+I'd say for software engineering side, what new technology is out there for linting in particular, that can help out this type consistency essentially? I know that there's a new version of Python. I think Python 3.10, that has a better cursor and gives more clear error messages than previous Python version. So maybe we can also look into creating similar stuff for TensorFlow in particular or other machine learning platforms, so that error messages aren't as scary as they are now. And it will definitely help with people. And not just beginners, also it'll help out with people who've been doing it for a while. It makes it easier to know where it is coming from.
+
+Interviewer:
+So did you ever try to convert some models, like from C++ to Python or from PyTorch to TensorFlow?
+
+Leader 5:
+Well, ANONYMIZED_MODELNAME_1 was originally written in C, so we convert it from C to TensorFlow.
+
+Interviewer:
+So what do you think is challenging during this process?
+
+Leader 5:
+The big thing is that C and Python are pretty fundamentally different, because C is compiled static type language and then Python's more dynamic and more flexible. So, there's some things that are written very differently in C than you would in Python, because it's more efficient to do it one way or the other in each language.
+
+Interviewer:
+And also the converting between different frameworks. I think that should be more easier than converting between different languages.
+
+Leader 5:
+Yeah. I'd say TensorFlow and PyTorch are more similar to each other compared with Darknet written in C.
+
+Interviewer:
+Yeah. So I think that's all for the interview. I'll stop recording.
+

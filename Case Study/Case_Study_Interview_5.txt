@@ -1,0 +1,297 @@
+Interviewer:
+So we are starting now. Have you signed the consent form?
+
+Leader 6:
+Yeah, I have.
+
+Interviewer:
+This interview is on the reproducibility and evolutionary process of the brain. We'll have four sets of questions here. First, I'd like to know more about your background in machine learning and software engineering. How many machine learning projects have you contributed to?
+
+Leader 6:
+So far, it's been two. Two projects. The first one was helping recreate the ANONYMIZED_MODELNAME family for the open-source ANONYMIZED_MODEL_COLLECTION_NAME. And the other one was doing hand action recognition.
+
+Interviewer:
+How big is your teams?
+
+Leader 6:
+The ANONYMIZED_DL_FRAMEWORK team was around 20, 25 people. And the hand recognition team was around four people.
+
+Interviewer:
+Sounds great. Can you think about the most recent project, where your team reproduced a machine learning model using research papers or research prototypes? What are your goals of reproducing such a model?
+
+Leader 6:
+The main goal is to reproduce the results from the paper, using the model description outlined in the paper and to test if the accuracy would be the same.
+
+Interviewer:
+Did you find that the context was similar enough for the work to be directly applicable? That is to say, did you need to modify the model's function to make the model work in your context?
+
+Leader 6:
+I mainly worked on the data pipeline aspect of the project, which is used for preprocessing all the data, and this is a major part, to get the same results as the paper. So the paper that we were trying to recreate was written in C, and the software stack that we're using was Python and ANONYMIZED_DL_FRAMEWORK. So there were some changes that we had to make in the implementation aspects, because there's several things that you can get away with in C but you can't get away with in Python, and we had to realize that. So we had to change, for example, the way we handled mosaic, where you have four pictures stitched together. Using ANONYMIZED_DL_FRAMEWORK is a different type of implementation. Even though we tried to get it to be as close as possible, it's still very difficult to get it as close as possible when you're dealing with two different software stacks.
+
+Interviewer:
+Okay. Have you ever failed to reproduce a research paper's results?
+
+Leader 6:
+Yes, throughout the recreating of the ANONYMIZED_MODELNAME project, we've been debugging, and therefore failing to reproduce the results. But as we started trying to leverage the tools of ANONYMIZED_DL_FRAMEWORK more effectively, and the tools that we have at our disposal more effectively, we're slowly getting and approaching to the same accuracy, but it hasn't been the same yet. There's usually a 3% to 1% discrepancy in the accuracy of the models that we're trying to recreate.
+
+Interviewer:
+Okay. So then, the next set of questions is related to machine learning reproducibility and evolutionary process. Currently we are trying to understand the process that software engineers follows as they try to bring research results into their organization. The first few questions are related to the scientific or engineering effort in this process.
+
+Interviewer:
+In what ways do you think the reproducibility and evolutionary process is a scientific effort?
+
+Leader 6:
+I think the fact that we're trying to reproduce these results is important to the scientific effort to validate if these results can be achieved from an independent organization like the ANONYMIZED_MODEL_COLLECTION_NAME. I think that's pretty much the main goal that we have.
+
+Interviewer:
+And in what ways do you think this process is an engineering effort?
+
+Leader 6:
+On the engineering aspect, if we try to reproduce these models in a different software stack, it's easy to integrate into other types of applications that are best suited for that software stack. So for example, ANONYMIZED_DL_FRAMEWORK. There are things we can use ANONYMIZED_DL_FRAMEWORK for that is not possible with C, or the effort to take to reproduce that functionality that you would get in ANONYMIZED_DL_FRAMEWORK, in C would be way too difficult. But I just [crosstalk 00:06:25].
+
+Interviewer:
+Can you talk me through the process that your team follows to reimplement similar errors between model, including the state-of-the-art models and older ones.
+
+Leader 6:
+The process that we took for the ANONYMIZED_MODELNAME project was that we divided it into four main sections. The data pipeline, or data loading, aspect. The loss function aspect. The modeling aspect. And then just the overall software engineering aspect of handling basically DevOps. Handling the software operations of the team still handling training, that stuff.
+
+Interviewer:
+I'd like to show you a process diagram which is created based on our ANONYMIZED_MODEL_COLLECTION_NAME team... so can you see my screen? Okay. This process model is created based on our experience on ANONYMIZED_MODEL_COLLECTION_NAME. So tell me if you think this is an accurate diagram, or if you would like to change things based on your current team's actual process.
+
+Leader 6:
+In the context of reproducing a model, I think this is very accurate.
+
+Interviewer:
+So would you like to add or remove any errors here or bugs here?
+
+Leader 6:
+From the academic paper analysis, I think that's pretty accurate. The Garden interface, for the ANONYMIZED_MODEL_COLLECTION_NAME specifically, I think that's very important. [inaudible 00:09:20]. For now, I don't think there's any errors that are really out of place.
+
+Interviewer:
+Okay. So do you want to add some [inaudible 00:09:51] in this diagram?
+
+Leader 6:
+I think something that might be missing from this diagram is the... things that we develop as tools to actually test these models, like handling the DMs or the hardware that we use to train these models. I think that was a very important effort that we made. Also the time it takes to set up the data sets and everything like that. I think that also goes in heavily with model engineering in general. Because I know that especially since I was in charge of setting up data sets, figuring out the scripts to actually set those data sets up to match the same data sets that the original paper used was very important. Also having that data set stored in a separate thing, in the cloud, and handling the operations that people used to access it and use to test the model, in general, is kind of missing, I would say. Just general DevOps is missing.
+
+Interviewer:
+How does your team update new iterations of your model if it does not work the first time?
+
+Leader 6:
+We've ran into this problem recently, where we tested the entire model for the really first time as comprehensive test, and we realized there was a massive gap in the performance of the C implementation model versus our implementation. So we had to do some testing of the specific outputs from each model. So I forgot, there was a specific name that was used for that type of testing, but you basically run the same inputs into every part of the model, and then you compare the outputs... Oh, differential testing. Yeah. So that's the main thing that we used.
+
+Interviewer:
+Okay. Sounds good. So next set of questions is on the pitfalls in machine learning reproducibility and evolutionary process. We are trying to find some hot spots in this process. Can you think about that, are there any hot spots in the machine learning reproducibility and evolutionary process? This can be understanding the paper, model, loss function, data pipeline, or validation?
+
+Leader 6:
+What do you mean by hot spots, again?
+
+Interviewer:
+It's like, where do you find is the most challenging part in this process?
+
+Leader 6:
+Oh. The most challenging part for us is the data pipeline. It's because a lot of the data manipulation that has been done in the original C implementation is very hard to reproduce in the Python and ANONYMIZED_DL_FRAMEWORK because of just the limitations of the framework. And they take advantage of the efficiency of C to perform many of their operations. The model and the loss function are very standard among all these frameworks and don't really change that often. So those are really easy to reimplement. But the data pipeline, due to the complexity of the way they implement their data preprocessing ops, I would say that's the major hotspot, yeah.
+
+Interviewer:
+For the data pipeline, are you using the same data set as the official research prototype?
+
+Leader 6:
+Yeah. When we're doing the paper analysis, we notate all of the preprocessing ops that the original paper does, and then we reimplement those in ANONYMIZED_DL_FRAMEWORK. And if the-
+
+Interviewer:
+Can you tell me about an error that you found before in a data pipeline?
+
+Leader 6:
+Do you mean like an error, or do you mean like a mismatch in accuracy?
+
+Interviewer:
+Yeah, an error can be bad performance, or a crash?
+
+Leader 6:
+Okay, so bad performance. This was one of the major things that we had trouble with, was the mosaic operation. When developing the code, it's very hard to recreate it step-by-step because it's obviously two different things, right? We had to do a couple iterations of the mosaic operation. In mosaic operation, there are four images, and then you stitch them together. The original implementation was made my me and another engineer on the team, where we stitch four images, and then we take a random center crop. With disregard of the actual bounding boxes, taking into account the preprocessing done on the images originally, and we found that to be incorrect, a way of reproducing that specific data op. Because the original implementation takes into account and tries to maximize the amount of boxes inside of the center crop image itself.
+
+Interviewer:
+So how do you find that? Did you compare the results to the previous one?
+
+Leader 6:
+Yeah. We basically ran the original mosaic code, and we ran our code, and we did a much more in-depth check of the paper's code. Another thing we realized was just by reading the paper, it doesn't really give us that much information. We had to go deep into the actual source code to actually see whether the implementation is true to exactly the results they made. And there's a couple things that we overlooked originally, in the overall order of the operations, we also overlooked. We felt that it might be easier, and it might be a cleaner implementation, if we ordered it a certain way. But we realized ordering it different from the original implementation will cause different results.
+
+Interviewer:
+Can you describe any other challenges that you met when implementing the other parts, like the loss function model?
+
+Leader 6:
+Since I didn't work mainly on any of those really, but I guess for the loss function, I think the only real trouble that we had was there was a clustering that we had to do for the boxes. The clustering that they do is much more efficient because of the language that they're using, and it was hard for us to attain the same performance, or the same training speed, that they were able to get through the k-means clustering algorithm. It's just, since it's a mismatch, we had to be much more efficient in the way we implemented in the language itself. Whereas they have a lot more leeway when implementing it.
+
+Interviewer:
+Do you think there's any challenge in where you are understanding the paper, or in the documentation?
+
+Leader 6:
+For this specific ANONYMIZED_MODELNAME, yes, because the original implementation was not the cleanest code. It's not the best well-designed code. There are a lot of, sort of, mistakes they made. But they happened to still get good performance. And we kind of realized that as we were reading the code more in depth and more in depth. I think the lack of comments really made it difficult for us to understand exactly what was happening too.
+
+Interviewer:
+What kind of documentation do you think that could be very helpful beyond the paper and the source code?
+
+Leader 6:
+Do you mean by source code, even including comments? Because I think the real problem that I felt was, they didn't really have any explanation of the preprocessing ops that they actually did do. It was all jumbled up together into one 600, 700-line piece of file that had zero documentation. And their supporting documentation, like the README, didn't have anything either. So I think a better... I don't know how to describe it, but maybe a better README, or better sub-pages that explain every part of their model, and explain the algorithm that they used. That might be helpful.
+
+Interviewer:
+Can you think about two things that would make it more easy for you to identify the errors in your machine learning implementation during the reproducibility and evolutionary process?
+
+Leader 6:
+Are you asking, like steps that we should have taken in order to make the debugging easier?
+
+Interviewer:
+Yeah.
+
+Leader 6:
+Okay. I think that there should have been a constant... There's a couple things that I felt we should have done when we were re-implementing this paper specifically. I think ongoing refactoring of the code, because I felt that sometimes once we tried to solve a problem, it makes the code way messier and way harder to read, which makes it way harder to debug. I think utilizing differential testing for every component, since we're trying to make a one-to-one component, even though it's hard to do in the grand context of the reproducibility, because they're two different platforms. But doing differential testing whenever you can as you're implementing would be very helpful. So yeah, I think those are the two main things we could have done better recreating this paper.
+
+Interviewer:
+Okay. How much of an impact can a bugging data pipeline affect the final performance of the model?
+
+Leader 6:
+It can do a massive amount of damage to the performance. If you make just a simple, one wrong value can plummet it 10%. We had to also recheck the values, too, of all the hue saturation, all those image ops, itself, we needed to recheck. And there's also things that we needed to make sure that were correct. Another problem that we had was the difference between the random operations that ANONYMIZED_DL_FRAMEWORK provided us, and the random operations that they used. And we had to make our own random ops. We had to create our own type of random ops to kind of recreate their implementation. So it can cause a lot... Even though obviously if you get the model wrong, it won't train at all, but data pipeline, yeah. It's a big source of problems.
+
+Interviewer:
+Okay. Did you do any end-to-end testing when you evaluate or optimize the model?
+
+Leader 6:
+For end-to-end testing, I'm assuming you mean creating unit tests?
+
+Interviewer:
+Yeah.
+
+Leader 6:
+Okay. So when we created the data pipeline, we didn't immediately create a unit test for it. We only started creating unit tests when we were ready to send PRs in. And for our unit tests, we decided to use the inbuilt ANONYMIZED_DL_FRAMEWORK test modules. The problem with creating these unit tests is that sometimes we create unit tests for the way that we expect the data pipeline to work. But our understanding might be wrong, so therefore our unit test might be wrong.
+
+Interviewer:
+When you have run the whole model and you find there is a bad performance, how do you identify the error or localize the error? [crosstalk 00:26:10] which part does the error exist?
+
+Leader 6:
+Usually the way we did it was for the loss function and the model, was simply put values through it with the same exact parameters in both implementations. And we'll just compare the outputs, and if the outputs are the same, we conclude that the implementation's correct. For the data pipeline, usually we first do a visual test, to see if there's anything glaring wrong with it. And then we'll start doing the test by inputting parameters through each data pipeline. The problem that arises is we're going to have to do it function by function. Sometimes because it's hard to push it all through, because for their implementation, the data pipeline isn't just one structure. It's multiple structures, whereas ours is literally one data-loading component.
+
+Interviewer:
+Let's move to the next set of questions. This set is on back to reproducibility practices. So we'd like to know what practices you and your team adopt in your engineering process in such process. So first, have you ever reused any [inaudible 00:27:46] model in your process?
+
+Leader 6:
+Not to my knowledge.
+
+Interviewer:
+Okay. What changes do you think that your teammates can make that make the process more effective?
+
+Leader 6:
+I think the documenting and the refactoring of code, continuously doing it, will help the readability. Because from my experience, I remember there was this one humongous function that none of us could really read except the original creator, which was ANONYMIZED_NAME_1, the other engineer on my team. And without any comments or any refactoring to make that function much more modularized, it's pretty much impossible to debug without him. I wish overall we did more refactoring, did more documentation. As we made it, I've been backloading it to the end of recreating the model. And then finally I think making unit tests while you create each component. Like whenever you're assigned a story to make a data pipeline component, you automatically make a unit test after. So it's proof that this component actually works as intended as the original model.
+
+Interviewer:
+So, you know there is many open-source projects in GitHub, or from other websites, so what do you think that other engineers that contribute to such open-source projects can do differently in their implementations? These open-source projects can be other implementations of ANONYMIZED_MODELNAME, for example using [inaudible 00:30:01] ANONYMIZED_DL_FRAMEWORK?
+
+Leader 6:
+I think that there's really not that many implementations that actually... There's a lot of open-source implementations of ANONYMIZED_MODELNAME, but none of them really implement ANONYMIZED_MODELNAME the way it's supposed to be implemented and get the same accuracy as it's supposed to be getting. I think that providing the actual results of the model and then providing the waste associated with those results, might help.
+
+Interviewer:
+Okay. And what do you think the machine learning researchers can do differently in their papers or research prototypes to help you reproduce their work?
+
+Leader 6:
+I know that this might be hard to ask, but I wish that most of them added more source code. A lot of machine learning researchers don't put source code out, because it's either under a different company's ownership or it doesn't have the proper license. Recreating the models might be easier if there was original source code. I wish that they'd spend more time explaining the data loading components within their models... or within their papers, rather than just giving a paragraph explanation of what they did. Because I think there's a lot more things that go into the way they implement the random ops, the way they implement their specific mosaic, CutMix, and the specific values of each one. Because I think that a lot of people overlook that, and just slight differences in values will cause a big problem, to recreate that specific model's results.
+
+Interviewer:
+How do your team measure the success of your reimplementation of the model?
+
+Leader 6:
+For ANONYMIZED_MODELNAME, since it's a object detection model, we measure the accuracy and the various different IoU losses, class losses, and compare them with the paper's results.
+
+Interviewer:
+How does your team balance the accuracy and the cost of the model? The cost can be time, or money...
+
+Leader 6:
+I think the way that we view it on our team, is that we try to recreate the model as intended. So we don't really take into consideration how we can reduce the model's size to make it easier to train. I don't know if that's what you mean. Reducing the model's size to make it easier to train?
+
+Interviewer:
+Yes, I mean to make the model easier to train... You know that if you want to improve the performance, you can improve the performance first maybe 10% of the performance, and after that you can just improve maybe 1% of that, and it would also take a long time...
+
+Leader 6:
+Yeah. Okay, so in that case we just try to get as close to the paper's performance as possible, no matter the cost or the time.
+
+Interviewer:
+Does that mean that once you match the result of the official one, you just think that your model is very successful?
+
+Leader 6:
+Yeah.
+
+Interviewer:
+What tools do you think that the software engineers and researchers can build to help you in this process? This can be any testing tools, debugging tools...
+
+Leader 6:
+Maybe some sort of CI tool that can be used for machine learning code? I know that's a big thing that has been tried to be implemented, but just due to the expensive nature of training and evaluating machine learning code. [inaudible 00:35:57] CI pipeline, it's not really cheap, but that'd be something to look into.
+
+Interviewer:
+The last few questions is the comparison between this machine learning reproducibility process and other software engineering process. So what do you think are different aspects of machine learning reproducibility compared to a more general machine learning process like developing a machine learning tool, rather than just reproducing this one?
+
+Leader 6:
+I'm sorry, could you repeat your question? I didn't quite understand it.
+
+Interviewer:
+Yeah. What do you think are different aspects of machine learning reproducibility process compared to a general machine learning learning developing process?
+
+Leader 6:
+Okay. I think that the general idea of reproducibility, it forces us to implement things... There's things that have been implemented in a way that the original author has implemented it in, and we have to follow the author's original implementation. But rather when you're creating a model yourself, you have much more leeway to implement it in any way you want, and test it in any way you want. I think that's the difference between the freedom. It's more of the reproducibility aspect requires you to be more in depth in the way that you read the original source code, and then you have to develop it in the exact same way rather than including some of your own optimizations or some of your own ideas.
+
+Interviewer:
+Do you have any experience on different software engineering process?
+
+Leader 6:
+Yeah, I guess for the... Oh, just any software engineering experience in general? Oh, okay. My first project was developing web software engineering that kind of automated some of the software engineering aspects of code review. It's mainly to... perform hub management, static and statistical analysis and stuff, code, to kind of outline potential errors before they actually happen. The thing with that project was, it was a lot more grander and hard to do because we were not breaking down the project itself.
+
+Leader 6:
+I guess other software engineering experience, or software development experience, would be I worked at three different companies. The first company I was working in web development, full stack development, where I was creating some housing application for the city of New York. So that was mainly it. Then I moved on to Charles Schwab, mainly working as a cloud engineer, and a DevOps type of role. And now I work at Capital One as a software developer, like a computer vision developer, integrating computer vision.
+
+Interviewer:
+That sounds good. Do you think there is any difference between the machine learning reproducibility process and a general software engineering process?
+
+Leader 6:
+Yes, definitely. I think that it's way easier to test software code. Due to the static nature of software engineering code, there is not the same randomness that you would experience in machine learning. So it's way more easier to account for different scenarios. I think developing those CI/CD pipelines are way more effective for software engineering in general, rather than machine learning. Yeah, I think that's pretty much the main two things that help make software engineering way easier to develop [crosstalk 00:41:22].
+
+Interviewer:
+I think those two things are mainly on the testing aspects, so is there any difference in the developing process?
+
+Leader 6:
+Developing?
+
+Interviewer:
+Like do you think the machine learning reproducibility developing is harder than the general software engineering process?
+
+Leader 6:
+For me, since I worked with data pipeline, not really. I think most of them is very similar development process.
+
+Interviewer:
+Do you have any recommendations or suggestions that you would like to provide to engineers who are experts in software engineering but not so experts in machine learning, how you work in a machine learning reproducibility process?
+
+Leader 6:
+I don't have that much advice, but just general advice would be to take into account the resources that you have available when you're reproducing these models. Because it's not as easy to validate if your model is working. Just as for software engineering where you can check in an instant, it's not that simple. So I think the debugging process is much more difficult in machine learning.
+
+Interviewer:
+And also, what suggestions would you like to provide to those who are experts in machine learning but novices in software engineering?
+
+Leader 6:
+I just feel that you have to be a good software engineer to be a good machine learning developer.
+
+Interviewer:
+So then, we have the last two questions. Which phrase do you prefer to describe such process, the "reproducibility and evolutionary process" or a "technology transfer process?"
+
+Leader 6:
+Reproducibility and evolutionary process.
+
+Interviewer:
+And last one, are there any other questions that we would like to know or you would like to ask other engineers? So we may include these questions in our future interviews.
+
+Leader 6:
+Oh, okay. Are these interviews only given to people who work in machine learning reproducibility?
+
+Interviewer:
+Yes, most of them are.
+
+Leader 6:
+Okay. No, I think you guys pretty much covered it for me.
+
+Interviewer:
+Okay. Thank you very much for your participation.
+

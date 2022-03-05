@@ -1,0 +1,351 @@
+Interviewer:
+So this interview is related to the Reproducibility and the evolutionary process of machine learning models. So here, we have four sets of questions. So first, I would like to ask some warm-up questions for our interview in order to know more about your background in machine learning and software engineering. So the background questions can be answered briefly so that we can save more time for the other interesting questions. So first, how many machine learning projects have you contributed to?
+
+Leader 1:
+Contributed to?
+
+Interviewer:
+Yeah.
+
+Leader 1:
+Four officially, but I've worked on 10 unofficial of them.
+
+Interviewer:
+Yeah, okay. And talking about the most recent project where your team reproduced a machine learning model using research papers or prototypes, what are your goals of reproducing such model?
+
+Leader 1:
+Typically, matching accuracy and matching speed of models and of course, making the code look clean.
+
+Interviewer:
+Yes. So, what do you reproduce the model for, like for a scientific project or something?
+
+Leader 1:
+Typically, in our case is for just general use cases so that it's available for public use. Typically, that includes scientific use cases as well.
+
+Interviewer:
+Okay. Did you find that the context [Zero 00:01:41] is similar enough for the work to be directly applicable, or how much did you modify the model loss function and as such to make it work in your context?
+
+Leader 1:
+How much should we modify it?
+
+Interviewer:
+Yeah.
+
+Leader 1:
+Well, modification is probably the wrong word to use in this case but we didn't really modify the loss function as much as we had to force the library to bend to what we were trying to do, so in doing so, we might have had to change some aspects of the loss function, do things in a certain order but the end result typically matches the original paper. And if it doesn't, we have to do that with a particular reason so going beyond to make a loss function, going to some of the data pipeline, there're certain things we cannot replicate.
+
+Leader 1:
+So for in our case, in terms of what we cannot replicate certain operations for the use in dynamic convolution, this is not allowed for us or we need to match the same precision, same accuracy somehow so that comes into doing more on the edge research of how can we incorporate other papers, incorporate new techniques in order to boost our model's performance without relying upon the aspects that we're not able to use. So at the end of the day, the goal is to match the performance and we need to do whatever we can to make the performance match if some things are out of reach for us.
+
+Interviewer:
+Yeah. Okay. So have you ever failed to reproduce a paper's results or results from other engineers?
+
+Leader 1:
+Yes, we're dealing with that right now. We're trying to fix that issue right now.
+
+Interviewer:
+Yeah. So, next set of questions is on the machine learning reproducibility and the evolutionary process. So we're trying to understand the process that software engineers follows as they try to bring research results into their own organizations. So first, I'd like to ask some questions related to the scientific or engineering efforts in this process. In what ways do you think this Reproducibility process is an scientific efforts and in what ways an engineering efforts?
+
+Leader 1:
+So I think it starts out more as an engineering effort. You're given the plate about what needs to get done and your goal is really just to follow the blueprint that's provided. So in initial construction through an engineering effort, because again, you're just given everything that you need to do, you just need to follow those rules exactly. I think it starts to turn into a research problem more when you start hitting the limitation specific library, that you're using the specific program that you're using to re-implement the model because then, you're starting to take a deeper look into exactly how your library works, what are the exact parameters of the limitations.
+
+Leader 1:
+And not only that, how can you get around them within the very specific constraints of the library. And to that effect, you'll also start to turn in to more of a research problem once you get past that blueprint aspect because a lot of the issues start to turn into a testing, writing down and logging issue where it's really just making sure you're keeping track of your results, keeping track of changes, and you're starting to learn a lot more about the particulars of how the task, as a whole, works rather than just a model.
+
+Interviewer:
+Okay. So do you think that if there is specific turning point from the engineering effort to the scientific one?
+
+Leader 1:
+I think the easiest way to pinpoint it or I think the most typical location of that turning point would probably be once the model is built and you begin testing the model because that's when you can start actually collecting results, making observations.
+
+Interviewer:
+Yeah. Okay. So then, can you talk me through the process that your team follows to re-implement some more errors [typically 00:06:35] in a model, the whole process from the research prototype to optimization?
+
+Leader 1:
+Yeah. So, the first step of course is to document and read the paper itself and when I say document the paper, I mean to collect all the artifacts in relation to the paper, like it have repositories, the related papers, [inaudible 00:06:59] where the actual [inaudible 00:07:03] is being used, the Core ML PyTorch models that are being used, the [inaudible 00:07:09] models that are being used. So the individual components, gathering all of those, and then first seeing what is the easiest to re-implement and what is the most pressing to re-implement.
+
+Leader 1:
+And then again, what can be done in parallel. So [inaudible 00:07:27] compression can be done in parallel because they can be written and tested on other models and then essentially backtracks to the stuff that you're working on right now. So once that type of collection is on, you start actually building the model and typically, you'll start by actually building the layers and the blocks that are contained within the model. Again, because those are the easiest to verify. And when you're starting out, that's very helpful because it gives you a lot of positive reinforcement and building process than going from the building of the actual individual components to the actual entire...
+
+Leader 1:
+Typically, we'll start with [code 00:08:14] finishing off the backbone and then going off to the individual decoders that are used for the specific tasks, done for a very specific way. Done specifically in this way because the backbone typically needs to be trained first before you can train the decoders on this specific sub-tests, so while the backbone is being trained and debugged, someone can be working on the decoders. There's a lot of [parallelization 00:08:36] that can happen then. Once the model is built, then you'll typically start working on the loss function because you need to have that exact notation of what is the output of the model.
+
+Leader 1:
+And in parallel to the model, you'll also typically start working on the [pre-processing 00:08:54] operations once again so that you can train the models, so that when the loss function is being developed, you can test all of these components to verify everything is working. Once the data pipeline and the model are built, then you start testing the loss function, so that's where the most amount of time and effort needs to go because the loss function is actually doing the optimization. So you can have minor bugs inside of your backbone in your model but the largest drop to accuracy are going to come from the data pipeline side and the loss function side, and that can only be tested by training the model.
+
+Leader 1:
+There's really no other way to test. They're just all probabilistic processes. Typically, that's the pipeline that's followed if we're pulling from a pre-existing model. For example the CenterNet project, then the first step in that collection of [inaudible 00:09:52] is, because that model was coming from a TensorFlow model as well, it's already [pre-run 00:09:56] in terms of like [two 00:09:57]. The approach is a little bit different. It was more in that collection phase to see what can be used already that's been built, and determine how it can be refactored into something that can be used in the current library format.
+
+Leader 1:
+So the problem definition itself was a little bit different but the process after that was the exact same, build the model first, test the model first then build the loss, and while you're building the model, build the data pipeline.
+
+Interviewer:
+Okay. Let me share with you the diagram. So this is why we create it based on our [inaudible 00:10:42] team and we are trying to revise this model. Do you think that this is an accurate one or do you have suggestions on this model?
+
+Leader 1:
+I'm taking attempts a second to take a look at it to make sure. So in this case, research prototype is the original, right?
+
+Interviewer:
+Yeah, or this can be some open-source project from GitHub.
+
+Leader 1:
+Okay, so just another version of the model. Yeah, it does make sense. Yeah, I think this is typically the general workflow that makes sense though testing and evaluation, component [configuration 00:11:34] this case is making sure everything ties together and works very well. I think testing and evaluation shouldn't be cleared of what exactly you mean there because unit testing, a lot of that is... The only way to getting it test a loss function is to test the entire model.
+
+Interviewer:
+Yeah. So here, testing may be including the Differential testing or End-to-End testing.
+
+Leader 1:
+Okay. Yeah, then that's fine.
+
+Interviewer:
+Yeah. And do you think we should add some back pages in this diagram? Why is the result does not match the previous one and you had to go back to the previous stage?
+
+Leader 1:
+Right, so that's what I was mentioning with the unit testing, testing evaluation. So it has the cycle that goes from, and it's typically only from the implementation, so once you're done testing a certain thing, if it doesn't work, you typically have to back trace all the way to implementation and go through this entire process again until the testing results come back as the same as the paper. So once you do that, you'll realize that once you've change [lots of it 00:12:55], you're either going to do a testing again, you test the component and [configuration 00:12:57] again.
+
+Leader 1:
+You have to do all the portability considerations again. If the accuracy doesn't match, you have to go all the way to the beginning and go through the process again even if you're not free writing the entire model.
+
+Interviewer:
+Okay. So do you think there should be an error from the reproducibility review to the implementation?
+
+Leader 1:
+I think so. I think that'd be the best place to put it.
+
+Interviewer:
+Yeah. Okay.
+
+Leader 1:
+I think you should actually split up code and reproducibility review. I think you should put the reproducibility review before the code optimization portion and put an arrow from the reproducibility review to the implementation, that'd be more accurate, and then have a block there just for code review.
+
+Interviewer:
+Okay. Thank you very much.
+
+Leader 1:
+I hope that makes sense.
+
+Interviewer:
+Yeah, that makes sense. So, how does your team update new iterations of your model if it does now work for the first time? How did your team work?
+
+Leader 1:
+Yeah. So if it doesn't work on the first time, the first thing we need to do is to figure out why it didn't work, where was the failing component. The first thing to do is check how large or small was the drop in accuracy, that typically tells you where they are. So if the drop in accuracy is very large, there's typically two places that error could be coming from, probably a diff in the model or the actual loss function. If almost your data pipeline is completely terrible, it only costs about 3% to 4% drop in accuracy, or 4% increase in accuracy, either one.
+
+Leader 1:
+Going from there, if you can verify, the first thing you want to verify at that point is your model. And for more reasons than one, it's the easiest to do Differential testing on because everything, you can load the same exact weights from the original paper and it might be a little bit difficult to do but you could do that. And once you do that, you can test the entire model by just comparing the outputs of each layer. If it doesn't write, then there's really nothing else you can check in the model. Your model is right at that point. Every output is correct.
+
+Leader 1:
+You might be able to check some of the back propagation items but there's also very little you can do in terms of fixing those back propagation and construct your limitations library. Those are things you have to log and make note of for when you're pushing the code. This is something we noticed. This is probably where the drop is coming from but then it goes beyond that. The next thing is to test the loss function and so this is probably the source of the largest drops in accuracy, depending on how you've implemented your loss, assuming your data construction is correct so this isn't your data pipeline, not the randomization component but the actual component, your ground troop itself, your label.
+
+Leader 1:
+Assuming that that is correct, then going into your loss function, this is where you can verify things with a gradient flow backwards, items like that, and that's where you'll find a lot of issues but if there's nothing wrong with that, then you'll go to the data pipeline side. So now, we're finders in that chase in our project where we can verify loss function is not the largest issue. If there is a drop in accuracy from the loss function, it'll be very small along the lines, maybe 0.5% to 1%, which in the grand scheme of things, is very tiny. And the largest change in accuracy are coming from our data pipeline, and inconsistency is there and that's what we're trying to fix. So, it goes in that model loss function than data pipeline.
+
+Leader 1:
+And also, the data pipeline's the hardest to verify and check because testing it takes so long. You need to train the model in order to test the data pipeline.
+
+Interviewer:
+Yeah. So next, we like to discuss some pitfall in machine learning or [participative 00:17:25] process, so this means we like to know what is challenging in this process. And also, we are trying to find hotspots in this process. Do you think that there are any hotspots in the machine learning reproducibility process, or which parts do you think that are challenging?
+
+Leader 1:
+So I think the challenge is come from very poor documentation in machine learning code right now, so I think that stems from two things. So with the ANONYMIZED_MODELNAME model in particular, there's two sources of the model. There's the scaled models that are more new, and then there's the original model, written in the C++ or C DarkNet code.
+
+Leader 1:
+So if we take a look at the original model in the C implementation, the model is very popular and there's a lot of just very poor implementations out there that you can't rely on, and the documentation of the original [inaudible 00:18:30] is not great, for one, and two, even if it was great, it's written all in C so there's a lot of items that you need to keep track of. So you can't just keep track of the forward propagation, you also need to keep track of the exact back propagation that they're doing because you can't guarantee it'll be the same in an auto differentiation library with the manual differentiation library. It's actually something we have to deal with because they didn't do the gradient exactly the same way as they would hand-write the gradient.
+
+Leader 1:
+They just started not doing certain steps because they don't need to in C. It's whatever they write down isn't a gradient and intensively, that's not the case so our gradient scaling was off. So, that lack of documentation is an incredibly difficult thing to deal with but that's also very particular to the ANONYMIZED_MODELNAME model and the library it was implemented in. I think more generally applicable is the issue to it with the scaled ANONYMIZED_MODELNAMEv4 model. That one was written in PyTorch and in Python. Code very easy to read but it was also written in this terms of a research code implementation so there's really no documentation.
+
+Leader 1:
+They just do things and never explain why or what they're doing. The scripts that they use are typically 1,000 to 2,000 lines long of just no function headers. It's what you would look at and call very poor quality code that would be really hard to use but it's only written by one team so they don't really need to make any changes to that so that's the hardest part there. So essentially, this is like a task of cleaning that code up. I don't know. That's the best way I could explain it, honestly. Sorry.
+
+Interviewer:
+Okay. So for the documentation, so I think that the documentation includes some tutorials, some guidelines, and the rate-me file in GitHub or some commands in the code and you have other things there.
+
+Leader 1:
+So what other things? Okay. So I think that covers most things but I think, particularly the deep learning code, I think it would be beneficial if there was a general standard of including the back propagation information. I feel it's less important in auto differentiation libraries but if you're not propagating a gradient backwards, documenting that somewhere would be really useful so in [inaudible 00:21:26], people will typically just add a line that says with torch.no_grad, which indicates that any code within that block is not going to be back propagated. In TensorFlow, they'll say tf.stop_gradient and anything that is related to the creation of that specific output won't be documented and it won't be tracked by the library anymore.
+
+Leader 1:
+I thought that's the type of information that needs to be logged somewhere by something. Otherwise, it's really easy to lose track of that information and it makes implementing models reading the code understand what's going on is far more difficult, and so it's just something that needs to happen beyond research or beyond just reproducibility and use things these happen in the research papers as well because that's the type of stuff that makes it easier to understand the original papers in the first place and without it, nobody can reuse the code that you've made for an industry use case.
+
+Interviewer:
+Yeah. Okay, so is there anything about [arrowing 00:22:40] on most recent projects that you find in your loss function?
+
+Leader 1:
+Yeah. We've been dealing with [errors 00:22:53] with it for a very long time. Let's see. Most of the errors are on our side. They're just dumb things that we did by not reading the code properly but I think one of the more difficult errors to solve was specifically... Sorry, one second.
+
+Leader 1:
+Sorry. So I think four of the more difficult issues to solve was with when we are implementing our loss function. It was particularly the way that they were computing the gradients. So the issue was that they were dropping certain aspects of the gradient computation. So for example, typically when you decode the output of your model, you'll have boxes that needs to put our cases in [inaudible 00:24:01] deduction. You have to decode the boxes from the model's output format into the actual prediction use case format, so that's going from model to real world drawable viewable boxes.
+
+Leader 1:
+Turns out that in most models, that decoding process is actually propagated in the model's gradient but in ANONYMIZED_MODELNAME was not, so they just completely skipped about 15 or 16 different steps in the chain rule because incredibly hard to track and was the biggest source of error so fixing that improve your model's accuracy from 54% to 62%, so that's a sizeable increase. And I know when you're taking a look at the actual gradients, the updates that were happening were about 100 times larger just by changing or by fixing of the gradient updates. That was the biggest bug that we saw.
+
+Leader 1:
+And now, I think the biggest bug that we're seeing is that we might be doing too much of that now. We need to go find out which stuff that we actually need to move, that we need to put back in.
+
+Interviewer:
+Yeah. Okay. So next, please. Think about two factors that you think made the process more easier, or make it more easier for you to identify the errors in your implementation during the machine learning reproducibility process.
+
+Leader 1:
+I guess of commit history, keeping track of the changes that have been made. I think the biggest thing is logging the accuracy after every single change that was made or a set of changes that are made, so basically the date of the change or the test as well as the commit name, the commit date, and then the accuracy associated with that. The biggest thing there is then you know what changes are hurting your accuracy and which changes are helping, which is immensely helpful.
+
+Interviewer:
+Okay. So, let's move to the next set of questions. So this set is on the factory reproducibility practices. So we like to know what practice you and your team adopt in your engineering process. So the first, have you ever reused any [pretend 00:26:51] model from other engineers?
+
+Leader 1:
+Yeah. We used the original [weights 00:26:58] from the original model.
+
+Interviewer:
+Yeah. So how do you assess the viability for reusing the [pretend 00:27:06] models?
+
+Leader 1:
+Probably in our case, it was just the [weights 00:27:14] that came with the papers so we don't really need to do any assessment with it. We knew that they were correct because it was from the original writers of the paper.
+
+Interviewer:
+Yeah. So did you use the model for testing?
+
+Leader 1:
+It was for testing initially, before we had our loss function.
+
+Interviewer:
+So what changes can your teammates make that would make the process more effective?
+
+Leader 1:
+What changes to which process, the re-implementation process, right?
+
+Interviewer:
+Yeah.
+
+Leader 1:
+I'm not sure. I think the biggest thing would just be keeping track of the changes that are being made, so that would be in your own code, if you change something, you need to keep track of the changes that you made to make sure that you haven't broken or you know where the breaking changes can be found so you're not following a rabbit hole of I don't know when this change was made but it's not working anymore.
+
+Interviewer:
+Yeah. So what do you think that other engineers who contribute to the open-source projects like open-source their own implementation in GitHub, what can they do differently in zero implementations?
+
+Leader 1:
+I think it's a matter of standardization. I think people need to follow a uniformed format for things like datasets and model output formats, things like that, because I think the biggest issue right now is that when people re-implement the model, they're trying to do it in the method that's easiest for them to manage. And then you take, for example, a dataset like COCO which is massive, it's 120,000 images right? And now, you're running into this issue where every single implementation of this model follows a different format for this dataset. You don't know which model that was re-implemented works, and you're just writing a lot of bridge code in order to get model A to work with the version of the dataset that you have.
+
+Leader 1:
+It's just, honestly, a big waste of time, which is why this [offering 00:29:47] actually makes sense. In our case, we're unifying everything so all the models come under one banner. We follow one format for datasets, follow one output format and you can change it whenever you want within the model as well.
+
+Interviewer:
+Okay. And what do you think that the machine learning researchers can do differently in their papers or research prototypes?
+
+Leader 1:
+Researchers can do?
+
+Interviewer:
+Yeah. machine learning researchers.
+
+Leader 1:
+I think for them, one is following the same rules of standardization of the dataset usage. That's one thing. And the other thing I think is really big is start documenting code. I think it's not even a matter of improving, I think you just need to start. And beyond that, I think it would be really cool to see it happen if people started having an active component between the paper and with the actual written paper, and the code that was written. So if they're talking about the loss function in the paper linking to the actual loss function and the part of the loss that they're talking about, so that when you put an equation in [inaudible 00:31:07] on paper, there's a direct correlation to how you did that in code.
+
+Leader 1:
+And the reason I say that is because oftentimes, you can easily convert a summation or a multiplication into a standardized coding loss. Basically, it's a four loop, right? But then, people start coming up with these complex masking situations. So in our case, they want to do, we're applying a mask to a lot that are generating a mask. Nobody told anyone how they generated that mask but the mask was there at some point. You had to find out how to do that but they talked about it in their paper. They give a general overview of how they did it but that's not helpful if you need to re-implement it or use it in any way.
+
+Interviewer:
+Yeah. Cool then. And so how do you measure the success of your re-implementation?
+
+Leader 1:
+I'd say the easiest way to measure the success of my implementation is through component's matched accuracy matched versus components dropped. I think it's the more components that you can match, the closer your accuracy is. The closer and better your implementation is, and I think it's relative to how many changes you had to make to make the accuracy match. So if you had to change the entire implementation of the paper, you just have a new paper if you don't have the original but your accuracy matches, which is great but you need to back trace and keep track of what did you have to change in order to make model match.
+
+Leader 1:
+And sometimes, those changes can be really powerful and effective things to add to other papers to just generally increase the accuracy. So maybe you implemented a new data augmentation in order to do it or maybe you have to rebuild your augmentation policy in order to make the accuracy match. Well, if you didn't work on the original paper and you were getting a lower accuracy, these are things that you should document, and those are positive things but there's also negative things, operations you can't reproduce. In which case, you just need to log those and put a measure of how much a degradation in performance there is as a result of it.
+
+Leader 1:
+So I think it's mostly just trying to maximize whatever the paper was trying to maximize. However close you get to that is how much your implementation matches the original.
+
+Interviewer:
+So how do you determine the acceptable trade-off or how does your team [inaudible 00:34:05] the accuracy and the cost of this process? So the cost can be time or money or other things.
+
+Leader 1:
+So I think the biggest cost is time. I'd say it depends on how close you are to the end of [inaudible 00:34:29], how close are you in terms of matching the accuracy and who is the end-receiver of the model, what do they care about. So if the person who is receiving this model only cares about the accuracy than the specific dataset task, then I think in that case, it really doesn't matter once you get to that specific number, whatever it is.
+
+Leader 1:
+You can start weighing the benefits of matching the original paper's results versus the amount of time it will take but in most cases, like our case, the end goal is to match the accuracy of the paper and to that effect, if you're getting really close and you're not matching exactly, then I'd say cut your losses but that really close to actual [authenticity 00:35:20] of then like 0.5% of the paper. Otherwise, I think you just need to keep working on it until you can get the accuracy to match. It's a matter of somebody else work this model with a different intent.
+
+Leader 1:
+Think of it like art. If you're copying someone else's art and you change certain things and it doesn't look the same, you basically changed the message and this model's the same exact thing. You basically changed the original implementation and you're passing it off as an exact replica of the original but it's not. So I think it's an involved time-consuming, money-consuming process but it's a process that needs to happen so I don't think there is a point where you can start making exact trade-offs unless the trade-offs are within very small margins.
+
+Interviewer:
+Yeah. So what tools do you think that software engineering researchers can build to help you possess reproducibility process?
+
+Leader 1:
+Other software engineers?
+
+Interviewer:
+Yeah, software engineering researchers.
+
+Leader 1:
+Okay. I think the biggest thing is lowering the cost of entry in terms of resources to train, and this can be done via software tools or can be done by monetary drops, so that's like writing code that is much more efficient to run on a lower-end GPU. So in our case, when we started doing gradient aggregation stuff because we really only have eight gigs of RAM to work with to train our model whereas the original paper had 32 or they have eight GPUs to train and we don't have that, so we had to make a compromise and say well, we have our eight gigs of RAM so how can we make use of that if we started writing gradient aggregation code that would simulate what it should [assesses 00:37:43], which works surprisingly.
+
+Leader 1:
+So I think lowering the cost of entry, whatever tools people can write to do that, that'd be good. I think also is profiling tools, so finding bottlenecks and finding gradient explosions, things like that. It's something that happens over time and not all at once, for example, gradient explosions. That happens over many iterations of the model and then it starts happening maybe 10,000 steps before the model is actually fully trained. I don't know the exact number. Well, if it's starting to happen like 10,000 steps before the model is fully trained, then that would be good to keep track of but not only good to keep track of, keeping track of the exact update that started causing the exact batch of images.
+
+Leader 1:
+Tools that can do that would be really cool. The other thing also is tools that can probe the internals of the model and plot weight distributions so you can compare the exact distribution of the learned weights against the original weights. So it's a lot more analysis tools for the internal work and so general machine learning models.
+
+Interviewer:
+Yeah. Okay. So the last set of questions is the comparison between this machine learning and reproducibility process and as a software engineering process. So we are trying to find the specific feature of this process. So what do you think that are different from machine learning reproducibility compared to a more general machine learning developing process?
+
+Leader 1:
+So I think reproducibility versus general, the process ends at being almost exactly the same. I think the general process would typically begin with a... The general process, I think honestly, would be a little bit more simple because it starts with a hypothesis and you're testing to see if your hypothesis is correct so it's more of you don't have a specific accuracy target, you have an inkling of a thought process of why this might be better. And if it doesn't match up, if the accuracy isn't better, the results of your findings will revolve around why that's the case, which drastically simplifies the process.
+
+Leader 1:
+When you're doing reproducibility however, you have a goalpost that you need to reach. So it's not just a matter of figuring out why something that doesn't work is also a matter of figuring out how you can fix it and it's not a matter of getting another paper. You don't have the time to fix it most of the time or you don't have the time to dwell on the why of it, which oftentimes makes it harder to debug.
+
+Interviewer:
+Okay. And then can you talk about the difference between this machine learning reproducibility process and a general software engineering process.
+
+Leader 1:
+Okay. Yeah, these are completely different things. Machine learning reproducibility, there's a lot of software experts that [compare 00:41:15] to it. Think of it as harder software engineering reproducibility because you can take advantage of everything that you can do in software engineering [versus 00:41:24] you can take advantage of getting a test Differential testing but then someone shows out a probabilistic process to this as well so then you have to start considering the fact that it's not just you have to match the accuracy or it's not just a matter of testing it becomes really difficult because the testing is dependent upon a random process, a random generation of information.
+
+Leader 1:
+So that means that testing takes a lot more time and getting updated results from your algorithms takes a lot more time. So I think with software engineering as a whole, it's a lot easier to get results when... It's a lot easier to debug, check, and fix specific items because oftentimes, it's not dependent upon a probabilistic process so you can just run your code and test it, and running a code can take a long time sometimes and in software engineering process as well but it's a lot easier to find the bug as well because it's dependent upon a consistent process.
+
+Leader 1:
+With machine learning reproducibility, that's not always the case. And then the other big thing with machine learning reproducibility is that you're not just considering the forward flow of a code. In software engineering, just general software engineering code, there is a specific flow that takes place. It always goes forward. You never have to convert, you never have to take into account the backwards flow through all of the code but machine learning code, you have to do it because every single optimization update requires optimization, a back propagation, so that's the reverse process of going back from your loss function back into the model.
+
+Leader 1:
+Both the forward and the backward process needs to be correct. And in our specific case actually, it hit a lot harder because we were dealing with a ratio based to loss function, which means the value is always between zero and one, and what really caused the bug was that our loss value was correct so the number our loss function was writing to the outside was 100% correct. The issue was that despite the value being 100% correct, the gradient was not correct because the loss function with the ratio would always output something between zero and one but the steps that caused the value on top and bottom were completely different.
+
+Leader 1:
+So the values might have been left or right but the initial steps in the backwards propagation were not correct.
+
+Interviewer:
+Okay. So is there any recommendations or suggestions that you would like to provide to the engineers who are experts in software engineering but novice in machine learning, wasn't involved in the machine learning reproducibility process?
+
+Leader 1:
+Suggestions?
+
+Interviewer:
+Yeah.
+
+Leader 1:
+I think the biggest one would be to not change the method of implementation from the way that they're doing their software engineering typical coding at the beginning, and then adapting what they already know once they've reached a process of testing and training the model because you can seriously find a lot of bugs by just relying upon the original software engineering best practices that exist. It's just the bugs that you can't find will be a lot more difficult to pinpoint in a machine learning model and I feel a lot of these stuff that they already know can be repurposed to make it easier to re-implement the models.
+
+Leader 1:
+So I think the biggest thing is just making sure to reuse what they already know from software engineering development.
+
+Interviewer:
+Okay. And do you have suggestions to those who ask first in machine learning but no knowledge in software engineering?
+
+Leader 1:
+Yeah, so it goes back to the other thing of software engineering. If you're an expert in machine learning, I think the biggest thing is you need to learn how to do software engineering to start. So learning how to do code documentation, learning how to do proper unit testing, and I feel the biggest changes, the biggest innovation in machine learning reproducibility can come from that side of stuff because they are so familiar with machine learning code in general that for them, they might find a way to actually write a unit test for a probabilistic process.
+
+Leader 1:
+That might actually happen if a person who is very familiar with machine learning code also did general software engineering stuff as well. So I think for software engineering people, it's more understanding the machine learning aspects of the code as general [inaudible 00:46:55] and sticking to their guns with the software engineering best practices. And for machine learning people, it's learn the software engineering best practices and then apply them to the machine learning stuff so that you can actually find and reproduce models much more quickly.
+
+Interviewer:
+Yeah. Okay, so the last question is do you have any questions that you would like to know or you like to ask other engineers since we will have interview with engineers from companies in next few months?
+
+Leader 1:
+I can't think of any off the top of my head right now but I will actually send you a few on Slack. I can't think of any right now just because you just raised the question to me, right? But I 100% have questions that I would like to ask and if they come up, I'll just send you or Doctor Davis those questions.
+
+Interviewer:
+Yeah. It actually makes sense.
+
+Leader 1:
+And then we can have a conversation about those. Yeah, sorry.
+
+Interviewer:
+Okay. Thank you. So, that's for this interview. I will stop recording.
+

@@ -1,0 +1,300 @@
+Leader 2:
+Do you want us to write a document for you?
+
+Interviewer:
+I think, yeah.
+
+Leader 2:
+Because we can talk about high level stuff now, but if you want like more details, we can just compile it into a document so that you can have it for reference.
+
+Interviewer:
+I think it's fine if you just have the high level overview of the changes and if we need more detailed ones, maybe I will talk to you.
+
+Leader 2:
+Okay. So I guess for...
+
+Leader 3:
+Wait, quick question about the diagram. So for the research prototypes, is that different than implementation?
+
+Interviewer:
+So the research prototypes here includes the prototype from the paper and the replication from I see the...
+
+Leader 3:
+Oh, I see.
+
+Leader 2:
+Okay. So I guess we can start from left to right then.
+
+Interviewer:
+Yeah.
+
+Leader 2:
+So model selection. We didn't really have a choice, I guess. People just gave us a list of models. We proposed some of our own, but they got shot down. So yeah, I don't think there was probably any issues with that. We were kind of just given a model to work on. So then...
+
+Leader 3:
+Model analysis wise, I think we spent a big portion on that, making sure that it was possible. Do you want to talk about like the issues we found later too?
+
+Interviewer:
+Yeah. If you have.
+
+Leader 3:
+Okay. Yeah. So from our initial model analysis, we thought everything would be possible since there was functions. There was basically one-to-one functions from ANONYMIZED_DL_PLATFORM_1 and ANONYMIZED_DL_PLATFORM_2. But halfway through last semester we realized we needed to make it TPU friendly, which means we had to figure out a way to redesign all the meshes to work on TPU since the meshes in ANONYMIZED_DL_PLATFORM_1 were all dynamically shaped in terms of edges and nodes and whatnot.
+
+Interviewer:
+So does that mean the ANONYMIZED_DL_PLATFORM_1 operations does not discuss TPU in their documentation?
+
+Leader 2:
+Yeah. They don't talk about TPUs at all. So the way they implement their meshes makes a lot of sense. If you're in a GPU environment, it's a lot easier also, but in order to convert it to TPU, we had to put some design strategies into place and test different possible prototypes until we got the one we have right now. So, do you want us to talk about the different things we tried? Or do you want us to..
+
+Interviewer:
+Yeah, you can talk about that. That's...
+
+Leader 2:
+Okay. So the first thing we tried was... So I'll talk about, to explain why we tried it I should probably explain why the original meshes didn't work for the TPU. Obviously different meshes have different sizes. And then when you have different meshes of different sizes, you can't really batch them super well. For example, in one batch, you might have multiple meshes that are really small and multiple that are really big. So it's kind of difficult to batch. So the way they batch, they follow two strategies. One is they just ignore the batch and they just create a huge tensor that contains all the vertices and edges. And then they use auxiliary variables to figure out, to demarcate where the beginning of each mesh is. So that's one strategy, they call it a packed tensor, and then they have a padded tensor where they basically pad the meshes to the maximum instance of the biggest mesh.
+
+Leader 2:
+The reason why none of those work for us is because if we did the packed version, the length of that tensor is still variable, is still dynamic. So we obviously can't work with that. And the problem with padding to the maximum, padding to the largest mesh's dimension is that we don't know how how big the meshes can be. So that also is not statically determined. So basically our first strategy was to just do like a padded representation with a set maximum number of instances. I think we said it was like 200 or something. And the problem with that is when you do the intermediate calculations to create that statically shaped mesh, there's still dynamic shaping going on because you have to figure out how much to pad each mesh with so that didn't work. And then our final design, which is what we have now, is we basically create a mesh that has every possible vertex coordinate and every possible face and every possible edge.
+
+Leader 2:
+So we have a tensor for vertices, a tensor for faces and a tensor for edges, which is derived from the faces. But then we create auxiliary tensors called masks that basically tell you which ones are valid. So if you have a one in a position in the mask, the corresponding position in the vertex tensor or the edges tensor would be considered part of the mesh. And if it's zero, then it's not part of the mesh. And that makes sure that every time we create a new mesh, it's always the same size. The only thing that's changing is whether the mask has more ones or less ones essentially. So that was how we overcame the challenge of redesigning the meshes.
+
+Interviewer:
+Okay. So how much extra time did you spend on the TPU adaptation for that?
+
+Leader 2:
+It kind of depends on how you calculate it because in terms of the design, it probably took us two weeks to figure out the best way to do it. And then implementation wise, because it was tied so heavily into the different mesh operations we have, we had to adjust all of those operations. So just implementing the new meshes, which was basically just a Cubify that took about maybe like a month of implementation and testing. But then there was also some time within like that month where we were just rewriting some of the existing ops so that we could adapt to the new mesh format. So if you want an overall time, probably a month and a half is how long it took.
+
+Interviewer:
+So have you figured out any effective way to do this kind of thing?
+
+Leader 2:
+You mean effective way to make a non TPU friendly structure TPU friendly?
+
+Interviewer:
+For if you have to design this one again, how will you do? Will you change the process you did before?
+
+Leader 2:
+Yeah, I think if we were to do this again, I would probably...
+
+Leader 2:
+So this scheme of using masks is not something new. People have been doing it for a while. And I just happened to discover it, while I was researching how to make this feasible. So if I knew that masks were a thing and that they were already being leveraged in other contexts, then maybe it would've been easier for me to think, "oh yeah, let's just use a mask." But yeah, at the time, I didn't know how to do that. And I also probably would've looked more into the original implementation because in their implementation they kind of do a quasi mask almost when they try to identify unique, or I guess non-unique duplicate vertices. And I didn't really pay attention to that because I didn't think it was important, but I ended up drawing a lot inspiration from that when I was creating the masks in our implementation. So basically if I just... I wish I had spent more time figuring out exactly how their implementation worked.
+
+Interviewer:
+Okay. Yeah, that makes sense. So is that all for the model analysis?
+
+Leader 2:
+Yeah, I think so.
+
+Leader 3:
+Yeah.
+
+Interviewer:
+And what about the implementation? Oh, Adam do you have anything else?
+
+Leader 3:
+I feel like the implementation part, yeah, the mesh part was also huge portion of that.
+
+Leader 2:
+There's some differences. Oh yeah, there's a few differences in the modeling between the paper and the actual model. Which is kind of confusing. So you probably know this, a lot of papers do ablation studies-
+
+Leader 3:
+Yeah.
+
+Leader 2:
+after the final prototype is done. So we knew about that. So we were able to avoid some of the code that was related to those ablation studies, but there's some code that, and I don't know if it's specific to ANONYMIZED_MODELNAME. They run their model on two different data sets. So they have a prototype ANONYMIZED_MODELNAME that end that runs on ShapeNet. And then they have the actual ANONYMIZED_MODELNAME that runs on Pix3D. A lot of the ShapeNet components are different than the ones in the final Pix3D one. So one example of that is in ShapeNet, they use a residual mesh refinement block, which is basically the mesh refinement block, except in their Graphconv they use something called a residual Graphconv, which is just Graphconv with skip connections.
+
+Leader 2:
+But they realized it was like too computationally expensive. So they made a like which version of Graphconv, which is in the official Pix3d version of the model. But we didn't know that at the time. So we were looking at the configs and we saw residual Graphconv and we didn't know if we were supposed to implement it because it was kind of confusing. So one challenge, I guess, digging through their code and figuring out what is being used and what isn't being used, because it's not super obvious. In a lot of their configs, also, they have parameters set. And then if you look at their actual code, there's a condition that checks if the parameter is set and then overrides the parameter. So that was also really confusing. It means that we can't just get all of our information from the config because the model might just override it when it reads it the config.
+
+Interviewer:
+You mean that the way the configuration of the research prototype is hard to understand and sometimes confusing?
+
+Leader 2:
+It's not hard to understand. It's just you can't really trust it.
+
+Interviewer:
+Okay.
+
+Leader 3:
+Yeah. You can't.
+
+Leader 2:
+Because it will say one thing, and then when you look at their actual model code, it turns out that they don't even care about that config parameter or the config parameter is overwritten by something else. So you just can't trust the config. You have to look at both the config and what's happening in the code as well.
+
+Interviewer:
+Okay. So is there anything changed in the data pipeline here?
+
+Leader 2:
+Yeah. Data pipeline was fine.
+
+Interviewer:
+I think you have mentioned that you have to do some conversion of the different format of data before.
+
+Leader 2:
+Yeah. So basically...
+
+Interviewer:
+Do you think that's a challenge?
+
+Leader 2:
+I wouldn't really say it's a challenge because it's just file IO.
+
+Interviewer:
+Okay.
+
+Leader 2:
+Yeah. You're just reading in raw data and then writing it into a TF record. So I wouldn't say that's a huge challenge. I guess there is kind of a challenge in some metric CNN, the voxels for the ground truth is huge. It's like 128 by 128 by 128. And it's not ideal for that to fit into a TF record, because what ends up happening is you have a 128 by 128 by 128 tensor where 80% of it is zeros. So basically we had to compress it and then write it in a compressed form. But I think that's what all the other implementations do as well.
+
+Leader 3:
+Yeah, it's a normal...
+
+Leader 2:
+Yeah. It's a normal, it's not really a challenge that we have to fix.
+
+Leader 3:
+Normal process.
+
+Interviewer:
+Okay. And have you met any problem for the testing?
+
+Leader 3:
+So far testing has been fine. One issue, actually, with unit testing or differential testing between the ANONYMIZED_DL_PLATFORM_1 and the ANONYMIZED_DL_PLATFORM_2 version is, I guess it's kind of specific because I'm trying to run both the ANONYMIZED_DL_PLATFORM_2 and ANONYMIZED_DL_PLATFORM_1 models at the same time. One major challenge actually is just installing both ANONYMIZED_DL_PLATFORM_1 and ANONYMIZED_DL_PLATFORM_2 on the same machine. They always take different versions of CUDA. And then I think ANONYMIZED_DL_PLATFORM_1 also installs its own CUDA drivers somewhere. And it sometimes overrides the ANONYMIZED_DL_PLATFORM_2 ones or overrides your default ones. And then ANONYMIZED_DL_PLATFORM_2 gets confused. So that took a while to figure out. But other than that, once you finally get both ANONYMIZED_DL_PLATFORM_1 and ANONYMIZED_DL_PLATFORM_2 running, the differential test is pretty easy. So far we've differential tested Cubify and the voxel head together and we've been able to match the output exactly so far.
+
+Leader 2:
+I'll speak a little bit more about differential testing. It's often hard to do a direct differential test between our version and the ANONYMIZED_DL_PLATFORM_1 version because we changed the meshes. So we can't just convert them to umpire rays and just compare them. It has to be like a little bit more in depth. So we have to do a little bit more work to make sure that everything's working correctly. But yeah. And the good thing about meshes also is that when we differential test them, we can visualize it really easily, which gives us a clue. Before we write any differential testing code, we can just examine the outputs and see if they look alike because they're 3D shapes. And then moving forward from that, we can do more like in depth testing.
+
+Interviewer:
+Okay. Have you guys met any changes or problems if you do the documentation for the code or the model?
+
+Leader 2:
+Our documentation or their documentation?
+
+Interviewer:
+Yeah, I mean for yours or when you look at the prototypes. Both of them.
+
+Leader 2:
+Hmm.
+
+Interviewer:
+Or in other words, do you think that there is a better way to do documentation based on your experience?
+
+Leader 3:
+I think that documentation has been pretty good for ANONYMIZED_DL_PLATFORM_1, 3D and the Detectron so far. It gets confusing when you try to dive into the details, because you can read, they give a summary of what the function's supposed to do, but when you actually read the code, it's different than what you initially think it's doing.
+
+Interviewer:
+So what do we mean there is difference there?
+
+Leader 3:
+So one big example is for the voxel head, they described it as, so what it does is removes internal faces. You have a bunch of cubes and they want to remove the internal touching faces. They described it as just finding the internal faces and then just taking them out. And in the paper, they also give a pseudo code for just iterating through all the faces and then checking against all the other faces, which they mentioned in the paper that is really inefficient. And they do mention that they have an efficient version, but they never explain how they do it. When you actually read the code, the efficient way they do it is by running a bunch of convolutions across the voxels and then based on the convolutions they figure out positions that faces are touching, which is a lot faster than just doing, I think it was three or four loops.
+
+Interviewer:
+Cool.
+
+Leader 2:
+Or I guess I'll add onto that. Yeah. So documentation, I feel like their documentation is ery high level. Like, what the behavior is, but not into detail of what's actually happening. So what ANONYMIZED_NAME said about Cubify, yes we are taking a voxel and we're removing internal faces, but they don't explain how they do that. Or they say they use 3D convolutions, but they don't explain why and how that works. And it's the same thing in a lot of some other ops. Graph convolution, for example, they say it extracts features from neighboring nodes, which at a high level, yes, that's what it does, but it doesn't explain how they do it. It's a lot more complicated. They have to use gather and scatter operations. So yeah, when you hear it, it sounds like it's easy, but then you have to spend a lot of time thinking about how it's working just by reading the code.
+
+Interviewer:
+So they also did not expand that in the paper, right?
+
+Leader 3:
+Yeah. It's hard to say the documentation is bad because for them to explain everything that's actually happening inside the code, you basically have to line by line and explain it. But on a high level, like the functions do what they promise to do.
+
+Interviewer:
+Okay. So it's like the line by line documentation can't hear a lot for the pre-implementation, right?
+
+Leader 3:
+Yeah.
+
+Interviewer:
+Okay. Is there anything else that you think challenging?
+
+Leader 2:
+I guess one challenge that we had recently was loading weights and the fact that like the ANONYMIZED_DL_PLATFORM_2 version of Mask R-CNN doesn't match or there's minor differences that make loading weights very difficult. Or, they don't make loading weights difficult, but they make it so that even if you load the weights correctly, you can't reproduce the same outputs because ANONYMIZED_DL_PLATFORM_2 adds, for example, they add BatchNorm to their FPN, right? Or is it RPN?
+
+Leader 3:
+Yeah, FPN.
+
+Leader 2:
+Yeah, to their FPN, which is based four sets of extra parameters that the ANONYMIZED_DL_PLATFORM_1 version doesn't have. And since we don't have those parameters, if we don't set them to something, then we're just not going to have to write outputs.
+
+Leader 3:
+Yeah. So I think there's design decisions that are made not by us that affect our weight loading because talking to Abdullah, he mentioned that the FPN layer for ANONYMIZED_DL_PLATFORM_2 they purposely... So in ANONYMIZED_DL_PLATFORM_1, you have the option of choosing not to have BatchNorm in FPN, but in the Google version that they wrote, they decided that BatchNorm improved accuracy on all fronts. So there's no choice, but to have BatchNorm; we can't remove it. So one thing we have to do differently for the weight loading is, the solution is to copy over their implementation and then just manually remove BatchNorm and then test the weight loading purely like that. I'm assuming that they still want to keep BatchNorms, so when we actually put together the whole model, the outputs may be slightly different.
+
+Interviewer:
+Okay. So is there any change for this box? Like the code review or code optimization you met?
+
+Leader 2:
+Yeah. I don't think we have had that many challenges with code reviews and I mean, we haven't done too many code reviews. And then we're not really at the point where we can optimize anything. We're still trying to get the implementation done.
+
+Leader 2:
+But there is, I guess I'm kind of moving ahead a little bit because I don't really have anything much to say about the rest of the blocks, but in portability, Abdullah did tell us that he wanted us to have not only a TPU friendly version, but like a lightweight GPU-friendly version of Metrex CNN as well, which means we'll have to, we're not too worried about that right now, but it means we'll have to do a little bit more design later because right now our meshes are pretty big. Just so that they work on the TPU, even though TPU compliant code technically still works with GPUs. GPUs obviously have more limited, it's a more limited resource. So we can't afford to, it is a more limited resource, but it's also more flexible. So we'd have to redesign some things if we wanted to make a GPU more, I guess easier to train on a GPU.
+
+Leader 3:
+Yeah.
+
+Interviewer:
+Is there anything else?
+
+Leader 2:
+Yeah, I don't think...
+
+Leader 3:
+Yeah, I can't think of anything.
+
+Interviewer:
+Okay. One last question. Do you think it's hard to config when you're trying to put the different components together? Something like the component integration here?
+
+Leader 2:
+Can you repeat that? It's hard to what?
+
+Interviewer:
+Like, it's hard to put the input, I mean config the input and output of different components.
+
+Leader 3:
+I haven't had a problem with it yet. Mostly because I'm just following what Mask R-CNN does since SensorFlow already has the Mask R-CNN implementation. I've just been taking a look at how they connected all their components together and I just followed from their example.
+
+Leader 3:
+Yeah.
+
+Leader 2:
+Yeah. And also for me, I mean, I guess when you're connecting components, you just care mostly about input and output shapes, but we fully define those. So for example, even though I'm not working on the backbone stuff that ANONYMIZED_NAME's doing, but I know what the output of the backbone is, relatively what it is, like the shape and the size and the type. And same goes for Zach who's working on the loss function. He knows exactly what the mesh's format is, because I gave him sample code to do that. So we have well defined input-outputs for each component. So connecting it wasn't too bad.
+
+Interviewer:ANONYMIZED_NAME
+Okay. So I think you are reusing Mask R-CNN from the test for code base, right? And is output of the Mask R-CNN different from the ANONYMIZED_DL_PLATFORM_1 version?
+
+Leader 3:
+This is something that we'll have to test later once I load all the weights in.
+
+Interviewer:
+Okay.
+
+Leader 3:
+Yeah. So that's something we still have to verify, but we're hoping that since it's in the Model Garden, that it's good enough.
+
+Interviewer:
+Yeah. I think for your [crosstalk 00:28:15] the backbone and the decoder is sometimes different for the shape and the data structure they used. So it's hard to config.
+
+Leader 3:
+Yeah. Oh actually, yeah, that brings up for the research prototypes or the existing implementations, they're also slightly different than the ANONYMIZED_DL_PLATFORM_1 implementations because the parameters or the configs are not exactly the same. So sometimes there's extra parameters that exist in a ANONYMIZED_DL_PLATFORM_2 version that didn't exist in the ANONYMIZED_DL_PLATFORM_1 version.
+
+Interviewer:
+Oh, okay. Maybe that's more, I think.
+
+Leader 3:
+Okay.
+
+Interviewer:
+Yeah. And if you have added more changes, just let me know.
+
+Leader 3:
+Sure. Yeah.
+
+Interviewer:
+Yeah. Okay. Thank you very much.
+
+Leader 3:
+Yeah, no problem.
+
+Leader 2:
+Alright.
+
