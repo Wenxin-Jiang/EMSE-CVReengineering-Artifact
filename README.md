@@ -8,3 +8,5 @@ This artifact includes:
   - A spreadsheet of 264 CV reengineering defects.
 - Case Study:
   - 6 interview transcripts.
+
+**For the spreadsheet, you may download to view it.*
