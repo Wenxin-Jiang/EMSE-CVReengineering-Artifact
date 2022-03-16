@@ -44,7 +44,7 @@ Interviewer:
 After the component integration, we are trying to match the performance to the paper and the research prototype. So can you talk more about that?
 
 Leader 4:
-Yeah. So whenever you're trying to match, for example, in ANONYMIZED_MODELNAME there are so many different combinations, first, that you have to match ANONYMIZED_MODELNAME with yolov3 baseline. After that you add one more step when you may match another results. You'll add a copy-coupled head and match another result.
+Yeah. So whenever you're trying to match, for example, in ANONYMIZED_MODELNAME there are so many different combinations, first, that you have to match ANONYMIZED_MODELNAME with ANONYMIZED_MODELNAMEv3 baseline. After that you add one more step when you may match another results. You'll add a copy-coupled head and match another result.
 
 Leader 4:
 Sometimes it gets difficult when the existing implementation that we are referring to, for example, in our case in ANONYMIZED_MODELNAME, they don't have a baseline. They don't have the implementation for the baseline. So we have to figure out by ourselves. Paper also doesn't have that much information about the baseline. So for example, if you're not able to even get the baseline, then going to the next part is hard because the ANONYMIZED_MODELNAME and the ANONYMIZED_DL_FRAMEWORK_2 version has just everything combined, right? So matching the one-on-one results gets a little difficult.
@@ -62,7 +62,7 @@ Leader 4:
 I think one of the challenges... It's not really... I mean, it is kind of a challenge, but it's related to reproducibility. There are certain languages, like for example, ANONYMIZED_DL_FRAMEWORK_2 is more broader, I think, than ANONYMIZED_DL_FRAMEWORK_1. So there are some operations in ANONYMIZED_DL_FRAMEWORK_1 which you can do. For example, in ANONYMIZED_DL_FRAMEWORK_1 whenever you initialize a tensor, you cannot change its size after that. So you had to know the shape of the tensor before you're working. So things like that. That can make things a little bit difficult. There are definitely ways to go around it, but it's just can be a little bit more work and a challenge in itself.
 
 Leader 4:
-For example, in dynamic key matching, we are going to face that challenge because making a code work for dynamic key matching on TPU, I think it's going to be a challenge because the way it is implemented in ANONYMIZED_DL_FRAMEWORK_2 is they keep on appending to their tensor and keep on adding to it which we cannot do in ANONYMIZED_DL_FRAMEWORK_1. So we have to spend time looking into how. That thing itself is simple, but to do it in ANONYMIZED_DL_FRAMEWORK_1 is a challenge in itself.
+For example, in dynamic k matching, we are going to face that challenge because making a code work for ANONYMIZED_ALGORITHM on TPU, I think it's going to be a challenge because the way it is implemented in ANONYMIZED_DL_FRAMEWORK_2 is they keep on appending to their tensor and keep on adding to it which we cannot do in ANONYMIZED_DL_FRAMEWORK_1. So we have to spend time looking into how. That thing itself is simple, but to do it in ANONYMIZED_DL_FRAMEWORK_1 is a challenge in itself.
 
 Interviewer:
 Okay.

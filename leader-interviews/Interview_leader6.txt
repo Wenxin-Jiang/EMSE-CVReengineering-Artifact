@@ -1,11 +1,5 @@
 Interviewer:
-So we are starting now. Have you signed the consent form?
-
-Leader 6:
-Yeah, I have.
-
-Interviewer:
-This interview is on the reproducibility and evolutionary process of the brain. We'll have four sets of questions here. First, I'd like to know more about your background in machine learning and software engineering. How many machine learning projects have you contributed to?
+This interview is on the reproducibility and evolutionary process of the deep learning models. We'll have four sets of questions here. First, I'd like to know more about your background in machine learning and software engineering. How many machine learning projects have you contributed to?
 
 Leader 6:
 So far, it's been two. Two projects. The first one was helping recreate the ANONYMIZED_MODELNAME family for the open-source ANONYMIZED_MODEL_COLLECTION_NAME. And the other one was doing hand action recognition.
@@ -65,7 +59,7 @@ Interviewer:
 So would you like to add or remove any errors here or bugs here?
 
 Leader 6:
-From the academic paper analysis, I think that's pretty accurate. The Garden interface, for the ANONYMIZED_MODEL_COLLECTION_NAME specifically, I think that's very important. [inaudible 00:09:20]. For now, I don't think there's any errors that are really out of place.
+From the academic paper analysis, I think that's pretty accurate. The ANONYMIZED_DL_FRAMEWORK interface, for the ANONYMIZED_MODEL_COLLECTION_NAME specifically, I think that's very important. [inaudible 00:09:20]. For now, I don't think there's any errors that are really out of place.
 
 Interviewer:
 Okay. So do you want to add some [inaudible 00:09:51] in this diagram?
