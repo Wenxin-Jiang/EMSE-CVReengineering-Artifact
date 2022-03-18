@@ -10,6 +10,9 @@ This artifact includes our data for:
 - Leader interviews:
   - The data collection method is presented in §4.2
   - The results are presented in §5.5
- 
 
+- Reengineering checklists:
+    ![1](./reengineering-checklists/General_checks.png)
+    ![2](./reengineering-checklists/Model_and_design_checks.png)
+    ![3](./reengineering-checklists/Train_and_evaluation_checks.png)
 <!-- **For the spreadsheet, you may download to view it.* -->
