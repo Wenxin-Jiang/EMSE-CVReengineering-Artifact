@@ -6,4 +6,10 @@
    <!-- - Collaboration: -->
    - Leader 2, 3 collaborated (co-leaded) on the same project before.
    - All the other leaders seperately leaded at least one project before.
-- The transcription was performed automatically by service from [Rev](https://www.rev.com/).
+    - The transcription was performed automatically by service from [Rev](https://www.rev.com/).
+  - Our checklist for reengineering works:
+  ![1](./Checklist/General_checks.png)
+  ![2](./Checklist/Model_and_design_checks.png)
+  ![3](./Checklist/Train_and_evaluation_checks.png)
+
+
