@@ -1,6 +1,6 @@
-# Deep Learning Model Reengineering: An Exploratory Case Study on Computer Vision
+# Challenges and Practices of Deep Learning Model Reengineering: A Case Study on Computer Vision
 
-This is the artifact for the submission to ESEC/FSE'2022. 
+This is the artifact for the submission to ICSE'2023. 
 
 This artifact includes our data for:
 - Open-source bug study:
