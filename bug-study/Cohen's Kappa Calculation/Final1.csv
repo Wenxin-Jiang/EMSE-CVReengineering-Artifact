@@ -1,0 +1,136 @@
+,Issue #,Framework,same code,same data,DL Stage,Impacts,General Code Error Type,Root Causes,Manifestation
+0,2,pytorch,yes,yes,modeling,bad performance (lower accuracy),timing/optimization,model/weight,reproducibility defects
+1,2,pytorch,yes,yes,training,bad performance (lower accuracy),timing/optimization,loss function,evolutionary defects
+2,2,pytorch,yes,yes,training,bad performance (lower accuracy),assignment/initialization,optimizer,evolutionary defects
+3,2,pytorch,no,yes,training,bad performance (lower accuracy),algorithm/method,optimizer,evolutionary defects
+4,2,pytorch,no,yes,training,bad performance (lower accuracy),algorithm/method,loss function,evolutionary defects
+5,2,caffe,yes,nan,training,crash,internal interface,gpu usage bug,basic defects
+6,3,tensorflow,nan,no,data pipeline,nan,other,nan,nan
+7,5,caffe2,yes,no,training,crash,memory exhaustion,hyperparameters,basic defects
+8,6,pytorch,yes,yes,training,bad performance (lower accuracy),internal interface,evaluation,reproducibility defects
+9,6,pytorch,yes,yes,training,bad speed – performance balance ,assignment/initialization,hyperparameters,evolutionary defects
+10,7,caffe,yes,nan,nan,crash,internal interface,wrong environment configuration,basic defects
+11,8,caffe,yes,yes,nan,nan,nan,nan,nan
+12,9,pytorch,yes,nan,nan,crash,internal interface,gpu usage bug ,basic defects
+13,9,keras, no,yes,training,crash,internal interface,wrong environment configuration,basic defects
+14,9,caffe,no,no,training,crash,data structure,data preprocessing bugs,basic defects
+15,16,tensorflow,yes,yes,data pipeline,bad data quality,assignment/initialization,data preprocessing bugs,reproducibility defects
+16,16,tensorflow,yes,yes,training,bad performance (lower accuracy),algorithm/method,loss function,reproducibility defects
+17,20,caffe2,yes,not specified,other,crash,external interface,wrong environment configuration,basic defects
+18,21,pytorch,yes,yes,training,crash,external interface,gpu usage bug  ,evolutionary defects
+19,22,pytorch,no,no,modeling,crash,internal interface,model/weight,basic defects
+20,22,pytorch,no,yes,training,bad performance (lower accuracy),algorithm/method,loss function,reproducibility defects
+21,28,pytorch,yes,yes,training,crash,data structure,data preprocessing bugs,basic defects
+22,29,pytorch,nan,yes,other ,crash,internal interface,wrong environment configuration,basic defects
+23,30,keras,yes,no,training,numerical instability,algorithm/method,other training process,evolutionary defects
+24,32,keras,no,yes,training,crash,syntax error,api defects,basic defects
+25,41,pytorch,yes,nan,modeling,crash,internal interface,gpu usage bug ,basic defects
+26,42,pytorch,yes,nan,training,crash,nan,nan,basic defects
+27,45,pytorch,no,no,modeling,bad performance (lower accuracy),timing/optimization,model/weight,evolutionary defects
+28,47,keras,nan,no,training,bad performance (lower accuracy),assignment/initialization,model/weight,evolutionary defects
+29,48,keras,yes,nan,modeling,crash,assignment/initialization,model/weight,basic defects
+30,54,tensorflow,yes,yes,training,bad performance (low speed),internal interface,gpu usage bug,reproducibility defects
+31,55,keras,nan,no,training,crash,internal interface,corrupt data,basic defects
+32,55,caffe,yes,yes,data pipeline,crash,data structure,data preprocessing bugs,nan
+33,58,tensorflow,nan,no,training,bad performance (lower accuracy),timing/optimization,hyperparameters,reproducibility defects
+34,62,caffe,nan,nan,training,bad performance (lower accuracy),timing/optimization,network structure,evolutionary defects
+35,72,_x0008_pytorch,no,yes,training,crash,algorithm/method,gpu usage bug,basic defects
+36,80,pytorch,nan,yes,training,crash,algorithm/method,gpu usage bug,basic defects
+37,86,pytorch,no,no,training,incorrect functionality,assignment/initialization,model/weight,evolutionary defects
+38,87,pytorch,nan,yes,training,crash,assignment/initialization,insufficient/incorrect documentation,basic defects
+39,90,keras,no,yes,training, bad performance,internal interface,api defects,evolutionary defects
+40,92,pytorch,yes,yes,training,bad performance (lower accuracy),timing/optimization,nan,reproducibility defects
+41,95,pytorch,nan,no,training,incorrect functionality,external interface,api defects,basic defects
+42,97,pytorch,nan,yes,training,nan,nan,nan,nan
+43,104,pytorch,yes,nan,other,crash,internal interface,nan,basic defects
+44,110,pytorch,yes,yes,data pipeline,crash,assignment/initialization,data preprocessing bugs,basic defects
+45,115,caffe,yes,nan,training,nan,other,nan,nan
+46,126,caffe,yes,yes,training,bad performance (lower accuracy),timing/optimization,hyperparameters,evolutionary defects
+47,145,pytorch,yes,no,training,crash,assignment/initialization,hyperparameters,basic defects
+48,146,pytorch,yes,yes,data pipeline,bad performance (lower accuracy),assignment/initialization,gpu usage bug  ,reproducibility defects
+49,147,pytorch,yes,no,training,crash,internal interface,gpu usage bug ,basic defects
+50,147,pytorch,nan,yes,training,crash,algorithm/method,nan,basic defects
+51,148,caffe,yes,yes,training,bad performance (lower accuracy),data structure,data preprocessing bugs,reproducibility defects
+52,153,keras,nan,yess,training,crash,syntax error,api defects,basic defects
+53,157,pytorch,yes,no,training,crash,logic,training data quality,evolutionary defects
+54,166,tensorflow,nan,yes,training,crash,internal interface,api defects,basic defects
+55,171,pytorch,yes,yes,training,bad performance (lower accuracy),timing/optimization,other training process,reproducibility defects
+56,178,pytorch,yes,nan,training,crash,checking,evaluation,basic defects
+57,190,pytorch,nan,nan,nan,crash,external interface,gpu usage bug,basic defects
+58,197,pytorch,yes,no,training,bad performance (lower accuracy),assignment/initialization,other training process,evolutionary defects
+59,209,pytorch,yes,yes,training,crash,algorithm/method,other training process,basic defects
+60,209,caffe2,yes,no,training,crash,other,training data quality,basic defects
+61,222,pytorch,no,no,training,crash,internal interface,model/weight,basic defects
+62,235,pytorch,nan,nan,nan,crash,external interface,api defects,basic defects
+63,237,caffe,yes,nan,nan,nan,internal interface,gpu usage bug,nan
+64,237,caffe2,yes,yes,data pipeline,crash,checking,corrupt data,basic defects
+65,238,caffe,yes,nan,training,crash,initialization,hyperparameters,basic defects
+66,242,pytorch,nan,yes,training,bad performance (low accuracy),algorithm/method,nan,evolutionary defects
+67,256,pytorch,yes,yes,training,crash,other,nan,basic defects
+68,257,tensorflow,nan,yes,training,crash,internal interface,wrong environment configuration,basic defects
+69,264,pytorch,no,yes,training,bad performance (lower speed),timing/optimization,gpu usage bug,evolutionary defects
+70,264,pytorch,no,yes,modeling,bad performance (lower accuracy),timing/optimization,layers,evolutionary defects
+71,279,pytorch,yes,nan,training,crash,internal interface,gpu usage bug ,basic defects
+72,292,pytorch,yes,nan,training,incorrect functionality,algorithm/method,other training process,evolutionary defects
+73,308,pytorch,nan,yes,training,crash,internal interface,api defects,basic defects
+74,310,pytorch,yes,yes,training,bad performance (lower accuracy),timing/optimization,hyperparameters,reproducibility defects
+75,310,pytorch,yes,yes,training,bad performance (lower accuracy),algorithm/method,loss function,evolutionary defects
+76,312,pytorch,yes,yes,training,incorrect functionality,initialization,evaluation,reproducibility defects
+77,324,pytorch,yes,no,training,incorrect functionality,data structure,data preprocessing bugs,reproducibility defects
+78,332,keras,yes,yes,training,crash,external interface,api defects,basic defects
+79,337,tensorflow,yes,no,nan,nan,nan,nan,nan
+80,343,pytorch,no,nan,training,bad performance (lower speed),timing/optimization,evaluation,reproducibility defects
+81,354,keras,nan,no,training,bad performance (lower accuracy),algorithm/method,evaluation ,evolutionary defects
+82,361,caffe2,yes,no ,training,crash,external interface,api defects,basic defects
+83,372,pytorch,yes,yes,training,crash,internal interface,evaluation,basic defects
+84,383,tensorflow,nan,yes,training,bad performance (low speed),algorithm/method,nan,evolutionary defects
+85,394,keras,no,yes,training,crash,assignment/initialization,nan,basic defects
+86,412,pytorch,no,nan,other,incorrect functionality,external interface,wrong environment configuration,basic defects
+87,440,pytorch,nan,yes,training,incorrect functionality,internal interface,gpu usage bug ,basic defects
+88,444,pytorch,yes,yes,training,crash,memory exhaustion ,gpu usage bug ,basic defects
+89,447,pytorch,yes,nan,training,incorrect functionality,assignment/initialization,other training process,reproducibility defects
+90,459,pytorch,no,no,training,incorrect functionality,algorithm/method,model/weight,reproducibility defects
+91,466,tensorflow,yes,nan,training,nan,nan,nan,nan
+92,475,caffe2,yes,not specified,data pipeline,crash,external interface,api defects,basic defects
+93,480,keras,nan,nan,modeling,crash,assignment/initialization,model/weight,basic defects
+94,499,pytorch,yes,yes,training,bad performance (lower accuracy),nan,other training process,evolutionary defects
+95,502,tensorflow,yes,no,data pipeline,crash,algorithm/method,training data quality ,evolutionary defects
+96,502,caffe2,yes,not specified,training,crash,external interface,api defects,basic defects
+97,524,caffe2,yes,not specified,training,bad performance (low speed),other,wrong environment configuration,evolutionary defects
+98,530,pytorch,yes,yes,other,incorrect functionality,external interface,network structure,evolutionary defects
+99,544,keras,nan,nan,other,crash,external interface,api defects,basic defects
+100,546,keras,yes,nan,modeling,crash,assignment/initialization,model/weight,basic defects
+101,628,pytorch,yes,no,training,incorrect functionality,algorithm/method,other training process,evolutionary defects
+102,650,pytorch,yes,no,training,crash,non-functional defects,insufficient/incorrect documentation ,basic defects
+103,650,pytorch,yes,no,modeling,crash,assignment/initialization,model/weight,basic defects
+104,657,tensorflow,nan,yes,training,crash,internal interface,wrong environment configuration,basic defects
+105,678,pytorch,yes,no,data pipeline,crash,assignment/initialization,data preprocessing bugs,basic defects
+106,681,pytorch,nan,yes,training,crash,internal interface,other,basic defects
+107,773,pytorch,nan,nan,modeling,crash,external interface,api defects,basic defects
+108,816,tensorflow,yes,no,training,crash,other,wrong environment configuration,basic defects
+109,820,pytorch,yes,yes,data pipeline,crash,internal interface,data preprocessing bugs,basic defects
+110,836,tensorflow,yes,yes,nan,crash,internal interface,api defects,basic defects
+111,842,pytorch,yes,yes,training,numerical instability,timing/optimization,evaluation,reproducibility defects
+112,854,pytorch,yes,no,training,bad performance (lower speed),internal interface,wrong environment configuration,evolutionary defects
+113,1050,tensorflow,yes,nan,training,crash,nan,nan,nan
+114,1074,pytorch,yes,yes,training,crash,non-functional defects,evaluation,basic defects
+115,1082,tensorflow,yes,yes,nan,nan,nan,nan,nan
+116,1097,pytorch,yes,nan,training,crash,assignment/initialization,other training process,reproducibility defects
+117,1172,pytorch,no,no,modeling,numerical instability,external interface,api defects,evolutionary defects
+118,1200,tensorflow,yes,nan,training,crash,external interface,api defects,basic defects
+119,1251,pytorch,yes,no,training,bad performance (lower speed),timing/optimization,evaluation,reproducibility defects
+120,1251,tensorflow,yes,no,nan,nan,nan,nan,nan
+121,1312,pytorch,yes,no,training,crash,assignment/initialization,loss function,basic defects
+122,1595,tensorflow,yes,no,training,crash,nan,data preprocessing bugs,basic defects
+123,1605,pytorch,yes,no,modeling,crash,internal interface,model/weight,basic defects
+124,1836,tensorflow,yes,yes,training,crash,non-functional defects,model/weight,basic defects
+125,2231,tensorflow,yes,no,training,crash,external interface,data preprocessing bugs,basic defects
+126,3307,tensorflow,yes,no,training,bad performance (lower accuracy),internal interface,api defects,reproducibility defects
+127,3331,tensorflow,yes,yes,training,crash,external interface,api defects,basic defects
+128,3387,tensorflow,yes,nan,training,nan,nan,nan,nan
+129,3673,tensorflow,yes,nan,training,bad performance (low accuracy),assignment/initialization,data preprocessing bugs,reproducibility defects
+130,3716,tensorflow,yes,yes,data pipeline,crash,data structure,data preprocessing bugs,basic defects
+131,3882,tensorflow,nan,nan,training,bad performance (lower accuracy),internal interface,gpu usage bug,reproducibility defects
+132,3937,tensorflow,no,yes,training,crash,internal interface,other training process,basic defects
+133,4114,tensorflow,yes,no,modeling,crash,internal interface,api defects,basic defects
+134,4780,tensorflow,yes,no,training,crash,external interface,nan,basic defects
