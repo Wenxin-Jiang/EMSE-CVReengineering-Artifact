@@ -1,0 +1,211 @@
+Speaker 1:
+Yeah. So first have you signed the consent form, which we sent you?
+Speaker 2:
+Yes. I did.
+Speaker 1:
+Okay. So, here we have five sets of questions. So background, process workflow, pitfalls, effective practices and others. So first, I'd like to ask some warmup questions for our interview, in order to know more about your background in machine learning and software engineering. So the background questions can be answered briefly so that we can save more time for the other interesting questions. So first, could you please estimate your machine learning expertise level? You may use intermediate, expert or master.
+Speaker 2:
+I would say in between intermediate and... Slightly higher than intermediate, I would say.
+Speaker 1:
+Okay. And what about software engineering expertise level?
+Speaker 2:
+It is intermediate, maybe below intermediate. So I would say that my machine learning expertise is better than my software engineering expertise.
+Speaker 1:
+And how many years have you worked on machine learning, professionally?
+Speaker 2:
+I would say it's three to four, three and a half maybe.
+Speaker 1:
+Yeah. And how many years have you worked on software engineering?
+Speaker 2:
+Basically, the same. Maybe for three years.
+Speaker 1:
+Okay. So can you tell me your educational background?
+Speaker 2:
+I did a bachelor degree from Moscow Institute of Physics and Technology but it was in applied physics and math. So it was not related to computer science. My Master's degree was in data science, specifically.
+Speaker 1:
+Okay. And so where did you learn about machine learning and software engineering?
+Speaker 2:
+I started from Coursera, then I finished some courses from Stanford, like CS231n and some other Stanford open courses. And after that, I just started reading relevant papers and implementing them and that was my way of improving my skills. And also, courses during my Master's study was also helpful.
+Speaker 1:
+So roughly how many machine learning projects have you worked on?
+Speaker 2:
+I would say 10 different projects.
+Speaker 1:
+Yeah. Okay. And how many software engineering projects?
+Speaker 2:
+I really don't know how to distinguish the machine learning and software engineering projects. If you mean, by software engineering project, something where there was no machine learning involved, then I would say four to five or something.
+Speaker 1:
+Okay. So do working in a team or you work individually?
+Speaker 2:
+I work in a company as a part of a team.
+Speaker 1:
+Yeah. So currently how many people are there in your team?
+Speaker 2:
+So we work in a small group of three people right now but we're a subgroup in a larger group of nine machine learning/software engineers. So yeah.
+Speaker 1:
+Okay-
+Speaker 2:
+So a subgroup of three in a company of nine.
+Speaker 1:
+Yeah. So what kinds of models have you worked on? Like computer vision and RP?
+Speaker 2:
+All my experiences in computer vision but, in computer vision, I have implemented almost every little sub-tasks. So I was working on classification, object detection, segmentation, pose estimation. I was also... Yeah.
+Speaker 1:
+Okay. Okay. So-
+Speaker 2:
+But computer vision only. No RP.
+Speaker 1:
+Okay. So now please think about the projects where you or your team re-engineer or mentioned machine learning model using research papers or existing implementations. So what are your goals of re-engineering such models?
+Speaker 2:
+Well, sometimes there were no open-source implementation and sometimes we didn't like the code of the open-source implementation and we thought that we could write it better and make it more usable inside of our company. So that were two main reasons to modify someone else's code.
+Speaker 1:
+Okay. So next sets of questions is related to the machine learning re-engineering process. So we are trying to understand that this process that software engineers follows, as they try to bring machine learning research results into their own organizations. So can you talk me through the process that your team follows to re-engineer a machine learning model from research paper, or existing implementation or another engineer's project.
+Speaker 2:
+So if there is no open-source implementation, then someone makes the draft of the model and then we look at the draft and we discuss whether it's close to what was proposed in the paper. And sometimes we try some initial runs to check whether or not it trains and if it trains and achieves some hard comparable accuracy, then we say that the work's done and we're good enough. But more often there are other implementations but sometimes in a different framework and then we ride the model and always try to port the weight of the pre-trained model in other framework because if we manage to load their weights into our model, then we would be 100% sure that our model is correct.
+Speaker 2:
+And it has done this several times. Loading weights from TensorFlow by torch and from... I don't remember the other frameworks but from Jack's, I think. From Jack's, the recent framework, which researchers from Google use. From Jack's it was loading weights by torch again and during this process, I found a large number of minor details, which are not mentioned in the papers.
+Speaker 1:
+Yeah. Okay. So that or show your process workflow, which is based on our team experience. So our team was working with Google to contribute models to the TensorFlow model garden. So others versus our model. So please take a look at the workflow and I'll pause the record for a minute and then I'll ask several questions on this model. So you can tell me when you are ready.
+Speaker 2:
+Introduce our version and then we test it, try to reproduce the results and if the results are not reproduced, then, I think, maybe there is a back somewhere and we re-read the paper. Sometimes I had to write email to the authors and ask some details and after that the model started to train.
+Speaker 1:
+So can you tell me, if you would change things based on your team's actual process here?
+Speaker 2:
+How would I change my process based on your process?
+Speaker 1:
+Yeah. So if you had to change some box here or some arrows?
+Speaker 2:
+I believe existing implementations, there is still some... After understanding the model, I always check the existing implementations to check how other people implement their models and after that, I moved to my version. So I would move the existing implementation, after model understanding because this is the additional information. Maybe you will, not maybe, sometimes I found in code something I, myself, missed in the paper and this would help to save one iteration of writing a model than trying to train it. I mean, in your chart it's parallel processes but in my chart, this is after understanding your tech implementation data and only then try to write your own model.
+Speaker 1:
+Okay. So this workflow does not have feature engineering stage. So, does your re-engineering work involve such a stage?
+Speaker 2:
+Which stage, again?
+Speaker 1:
+Feature engineering.
+Speaker 2:
+Oh, feature engineering. It depends. In computer vision, it does not but this process... No. I mean, in computer vision, there is no such thing as feature engineering. There is the process of obtaining new data but, I believe, it is included here in data pipeline.
+Speaker 1:
+Okay. And how do you measure the success of your re-engineering process?
+Speaker 2:
+Well, if I can train on the same dataset, the authors of the paper trained and I can achieve results, which are comparable to theirs, then it's a success. If I do not have their dataset or we're short on time and we do not have time to train on the same datasets that authors trained on... Well, if we're going to compare with the author's results directly, then it's better but if we cannot, then I check the ranking compared to the ranking in the author's paper. Which, I mean, if there was like a baseline model and then authors propose a new model and they got some improvement in like 1% and then we also had the same baseline, and we implemented their model and their model also gave us a slight improvement, like 1%, then we say that the early implementation was correct.
+Speaker 1:
+Yeah. So you said, your measures of success of the existing implementation first and so I'm wondering if you have a different dataset? Do you just use existing implementation, if that is successful, and you just use that on your own dataset or you modify that?
+Speaker 2:
+Very often, if it is a short project and we don't have time to do research and we just need to, then we take the model as is without any changes applied. Because most often it is more important, which kind of data you use and which kind of loss functions you use rather than the model itself because your very basic models still can achieve decent results on many tasks, especially if the task is tempo.
+Speaker 1:
+Okay. And would you like to add a back address in this diagram?
+Speaker 2:
+Add back what?
+Speaker 1:
+Back address. For-
+Speaker 2:
+Oh, back address. I would say that... I like your diagram. Maybe code review and model code optimization in my workflow happens at the same time I write the model. So I try to make it optimal from the beginning because later, I would be too lazy to rewrite it. Yeah. So I do not have these separate stages or maybe I would move the model code optimization somewhere to testing and evaluation. Before testing and evaluation, I check my code again and if it's good enough, I go and test the model.
+Speaker 1:
+Okay. So then we have the next set of questions related to the pitfalls in machine learning re-engineering process. So we actually trying to find hot spots in this process. So are there any hotspots in the machine learning re-engineering process or which parts do you think are challenging when re-engineering a model?
+Speaker 2:
+I think the most challenging part is, actually, training the model on the same data the authors of the paper trained. On the GitHub, there are many implementations which do not work or which are simply incorrect and they are there and some of them have hundreds of stars because yeah... The only way to validate that your model is correct is to, actually, train it but the pitfall is that many people only write the code for the model without any training code and they do not even try to train their model. That's, in my opinion, is the biggest pitfall.
+Speaker 2:
+And also, the other pitfall in re-engineering, I think, is that not always authors put everything into the paper. Sometimes it's by mistake, sometimes it's because they don't have enough space to put all the minor details, which are only presented in code. And that also makes re-engineering and re-implementing models much harder than it would be if they provided the source code. Because in my experience, very often, there were some minor details, without which, model would not train or would not converge as fast as it converges with this little tricks and these tricks were not mentioned in the papers.
+Speaker 1:
+Yeah. So can you describe any challenges when you're implementing a loss function or a data pipeline?
+Speaker 2:
+Well, the data pipeline, it's a completely, I think, it's a huge... No, no, no. The data pipeline highly depends on your kind of data. Sometimes the data format is easy to understand and to read, for example, if it's just simple images but if, for example, those images are from video sequences and you have to somehow store the metadata from which sequence they came, then the format of your data becomes very redundant and you have to write a lot of dataset readers and wrappers around wrappers to somehow load all this data into the model. So the pitfall, I would say, if your data format is complicated then the code around it would also be complicated and it would, eventually, lead to some hard to detect bugs.
+Speaker 2:
+Regarding loss functions, sometimes loss functions are just implemented incorrectly and it's just hard to understand when this happens. For me, the sanity check is whether or not it's possible to overfeed and, very often, when I tried to overfeed, I found that my loss function does not converge to zero or does not converse to some small number. Then it was a sign that I had to check my implementation. That's...
+Speaker 1:
+What about the model?
+Speaker 2:
+The model? Well, definitely, sometimes there are just stupid bugs, which appear because we're humans, but except from that, I don't think I have some very important points, which I want to mention. I mean, just everything is important.
+Speaker 1:
+Yeah. Okay. So based on your experiences, I wonder if you can think of one or two changes to processes, or tools or the artifacts that would make this process more easier, for you? So you can think for a moment and let me know your thoughts.
+Speaker 1:
+(silence).
+Speaker 2:
+Well, if all authors of the papers provided at least ways for their model so that other people could validate their results, that would make the process of re-engineering much, much simpler because when you have reference code, even if it is bad, even if it is unreadable, you still can somehow at least test that what you wrote is close to what they wrote and what they experimented with. But if you do not have any kind of reference, then it becomes hard. Lately, I even do not try to implement the paper if there is no code provided because it's just too time-consuming and often does not lead to the same result as authors. That's because they forgot to mention something. So, yeah. So the source code is a must have today, I believe, because without source code, it's hard to validate your claims and your results.
+Speaker 2:
+Speaking of any other artifacts, I would say, it may sound like a strange thing but for a lot of loss during training and testing could also be helpful because sometimes model does converges very slowly at the beginning and then converges fast and the middle or the end of training and you do not understand whether it's only you who struggles with the slow converges or other authors also struggled. In many GitHub official implementations of some papers, I saw that people asked for lots or for some logging results during training to compare their logging results with the authors ones because this also contains valid information, which could simplify the process of re-engineering for yourself. So providing ways or at least the close of the loss function is helpful.
+Speaker 2:
+And the other thing I would like to mention here is that, very often, people only report test accuracy and do not report train accuracy but, in my opinion, it is also very important because sometimes the model strongly overfeeds and no one mentions this. And it also, is confusing for you when you re-implement the model and you see that there is huge overfeeding, which was also present when authors trained their model but they just, simply, did not report that. So, yeah.
+Speaker 1:
+Okay. So the next set of questions is on the effective re-engineering practices. So we'd like to know what practices you and your team adopt in your re-engineering process? So first, have you ever reused any pre-trained models?
+Speaker 2:
+Yes, I did.
+Speaker 1:
+So how do you assess the viability for reusing pre-trained models?
+Speaker 2:
+Well, if you can load the models themselves without the need to download the whole library, then it makes reimplementing the pre-trained model much easier. For example, in BI territories like TorchHub, from which you can easily download models and this is a very convenient way, and this is, I believe, the way how it should be. Because the other way of doing it, is you have to download someone's Github repo, then you have to download weights separately, then you need to somehow connect them and this is inconvenient. The easier it is, the more chances we would reuse the pre-trained model.
+Speaker 1:
+Yeah. So when you download the models or the repos from GitHub, how do you decide this implementation is trustworthy?
+Speaker 2:
+Well, I check the number of stars and then I almost, always read the recent issues because if people struggle, then I would like to find this earlier, rather than after I download everything and then find out that the model doesn't train. Because if there are some problems, then you would be not the first one to encounter them.
+Speaker 1:
+Yeah. Okay. So what do you think could, as engineers who contribute to open-source projects, or the groups in company or scientists do different today in their implementations to make the re-engineering process more effective?
+Speaker 2:
+I believe that in machine learning in general, there are a lot of people with, I would say, not low but mediocre software engineering skills, in general, and sometimes the code is not very clean and sometimes it is very hard to understand. So, I believe, that if researchers would be able to write a clean code, which would be modular and which will allow some, kind of, easy modifications, then it would make the whole process of reimplementing models easier, in general. Because always when we had to rewrite the model, we had to do it because it was written as one large piece of code without any modularity and with some hard-coded things inside and that was just awful and we didn't want to bring something like that into our project.
+Speaker 1:
+Okay. And how does your team work together to make the process more effective? How do you work with your teammates?
+Speaker 2:
+Well, we have daily calls and we have projects on GitHub and pull requests and we just review them. Usually, someone opens a pull request, then we review it and then we have a short, 10 minutes call, where we discuss, using words, what we think because it is much faster than writing comments on GitHub and stuff. That's how we work. So usually, someone does the job and then we discuss the job before someone else tries to improve this because, I believe, it's hard to, actually, do it in parallel. It is easier when different people are working on different parts, other than trying to do the same thing.
+Speaker 1:
+Yeah. So what do you find is helpful or problematic in a machine learning research paper?
+Speaker 2:
+I believe, what is definitely helpful, is including all the minor details of the training pipeline. Sometimes people just mentioned, for example, the optimizer and that's it. But sometimes people mention the optimizer and all the hyper-parameters they use like the learning rates, their excellence, some other parameters and this is helpful. And if more people would include all the details in their paper, that would make it much easier to reproduce them. Even if this is included somewhere in the appendix, it is still very helpful because the curious readers who are interested could at least find it.
+Speaker 1:
+Yeah. So what do you find is helpful or problematic in the documentations of the implementations?
+Speaker 2:
+Helpful or problematic? Well, at least having the documentation is very helpful because, as I mentioned, machine learning researchers are not very good software engineers and they often do not include any documentation at all. And looking at these models, which take 10 different parameters with names consistent of three symbols and you just do not understand what the authors meant by this. And having a short docstring, at least, would help.
+Speaker 1:
+Yeah. Okay. So are there existing tools or other technologies you found valuable or problematic for re-engineering process? For example, all acts with some testing tools, visualization tools.
+Speaker 2:
+Yeah. Visualization tools. There is such thing as Netron, which helps to visualize the graph of the network and this was very helpful when I was trying to implement the models from author's source code. Because even if it's written in different framework, you can still load their weights into the Netron and you can see the graph and then you can compare their graph to your graph and that was very helpful. It, significantly, speed up the process.
+Speaker 1:
+And what about testing tools?
+Speaker 2:
+Well, again, having at least some tests would be great because, I would say, in 95 research papers or research repository repos, there are no tests at all. And all Google repos, they have mandatory tests. Maybe because Google forces them but except from that, people just do not write tests for some reason.
+Speaker 1:
+So I'm wondering if your team use any tools to make your code more clear, like pilings?
+Speaker 2:
+Well, we have a piling team and this thing that makes formatting. Yeah. We use formatter. There is slightly different formatter, we use black. Then we use a tool which sorts the imports, in Python, and we also use type annotations in Python because there... We just use type annotations. And we also try to cover, at least, something with tests. So we do not try to achieve like 100% coverage but if it is possible to test something, we try to write tests because it has saved us numerous times, especially in large projects, when something changes. And without tests, it would be just very hard to detect where it broke.
+Speaker 1:
+Yeah. Okay. So then how do you determine the acceptable trade-off between the performance of the model and the cost of your team? So this can be cost of time or money.
+Speaker 2:
+I think, if we've spent, for example, some time and the results are, at least, better than the baseline we were trying to improve, then it is acceptable. If we already have spent some time and the results are still not better than the baseline, we discuss whether we can spend several more days to try to improve it. If after a week of, for example, trying to implement the model, the results are still far from the authors, we try to find out some discussions from people who tried to do the same thing and if we are not the first one to fail to reproduce, then we give up and say that maybe there is something wrong with the paper or authors forgot to mention something. But if it works for other people, then we would be more engaged and would spend more time trying to implement it because we know that it works, for at least some people.
+Speaker 1:
+Okay. So we have the last set of questions, which is what was the comparison between machine learning re-engineering process and other software engineering process. So we'd love to ask you these questions but if you are busy and you have to go, you can let me know.
+Speaker 2:
+No, no, no. I'm fine.
+Speaker 1:
+Okay. Thank you very much. So, the next two questions are related to the scientific and engineering efforts in this process. So in what ways do you think the re-engineering process is a scientific effort?
+Speaker 2:
+I believe, it is a scientific effort because in order to reimplement, you have to, exactly, understand what authors meant by each word in their paper and the depth of your knowledge and the amount of your expertise in the machine learning field would help you to better understand the authors and maybe to make the same design choices they did, which would, in total, give you the same results. You definitely need a background and expertise, in order to re-engineer the models. Without this, you would struggle a lot and for a long time and, probably, would not succeed.
+Speaker 1:
+Yeah. So in what ways do you think it's an engineering effort?
+Speaker 2:
+I still think that the research and engineering efforts are 50/50. Because without proper skills to write code, you cannot express all your scientific thoughts in code. But without understanding what to express in code, it doesn't matter how good a software engineer you are, if you do not know what to write. So, I believe, the research and engineering parts are all of the same importance.
+Speaker 1:
+Yeah. So you mentioned that the efforts are 50/50, so do you think the two efforts are happening at the same time or the first 50 parts of the process is a scientific one and the rest are an engineering one?
+Speaker 2:
+Yes. At first, you spend some time to understand what you need to write. Here in your workforce, for example, the model understanding and your version, these are research parts. And after that, there's accumulation and reproducibility. That's all is more about the engineering effort.
+Speaker 1:
+So what do you think are different aspects of machine learning re-engineering, compared to a more general machine learning developing process?
+Speaker 2:
+I believe that, during re-engineering, you are mostly interested in absolute alignment of your results with the author's results and these make it very important to follow all the little details of the original implementation. And when you do not try to reimplement but rather write yourself, you do your own design choices without needs to check with the author's design choices. Sometimes it is much easier to write your own model, rather than to reimplement someone else's because you spend too much time figuring all the little details the author's made.
+Speaker 1:
+So can you tell me the difference between the machine learning re-engineering process and that in software re-engineering process?
+Speaker 2:
+I don't really understand what is software re-engineering process because in machine learning, you have the results you want to achieve and, often, you have some artifacts, most often, the weights of some pre-trained model and you want to achieve the same results but in software engineering, you don't have these artifacts. So this is a very different process. So, I believe, they are completely different and they have very different goals. For example, in software engineering, you probably want to re-engineer the system but you do not have a reference artifact. And in machine learning, you have a reference artifact and makes it, from one perspective, easier because you know you'll find a goal. But from the other perspective, harder, because you have to, exactly, align with this thing you have before.
+Speaker 1:
+Yes. Okay. So what recommendations or suggestions would you like to provide to engineers who are experts in software engineering but not, obviously, in machine learning if they are involved in such a re-engineering process?
+Speaker 2:
+Well, I would say that if you want your model or your reimplementation to be popular, you have to maintain a high-quality of code. For example, in my deeplab repo, it was written like three years ago and I would not use this code, myself, as of today because it's just awfully written. So maintaining the high-quality of code is important. And it also makes your project more attractive to people who are thinking of maybe using it in their work.
+Speaker 1:
+Yeah. And do you have suggestions to who are experts in machine learning but not, obviously, in software engineering.
+Speaker 2:
+Improve quality of your code, generally. Don't forget about the documentation, at least, because that's just a pain, that people do not include any documentation.
+Speaker 1:
+Yeah. Okay. So the last question is, are there any other questions you would like to know or ask other engineers, which is related to such a re-engineering process?
+Speaker 2:
+Well, I'm, actually, would also be interested in how other people workflow is different from mine. So I would ask people to explain the steps they do, in order to reimplement the model because maybe it would help me to do it faster in the future when I have to do it again.
+Speaker 1:
+Yeah. Okay. So that's all the questions for the interview. I'm going to stop recording.
+
