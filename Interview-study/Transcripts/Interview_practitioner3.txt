@@ -1,0 +1,303 @@
+Speaker 1:
+Okay. So, first I'd like to ask you, have you signed the consent form?
+Speaker 2:
+Yes.
+Speaker 1:
+This interview is related to the re-engineering process of machine learning models. So, here we have five sets of questions. The first is background and process workflow, pitfalls, effective practices in this specific process, and some other questions. First, I'd like to ask some warm-up questions for our interview in order to know more about your background in machine learning and software engineering.
+Speaker 1:
+The background questions can be answered briefly so that we can save more time for the other interesting questions. Could you please estimate your machine learning expertise level. You may use novice, intermediate, expert, or master.
+Speaker 2:
+Intermediate.
+Speaker 1:
+And what about your software engineering expertise level?
+Speaker 2:
+Beginner.
+Speaker 1:
+How many years have you worked on machine learning professionally?
+Speaker 2:
+Two years.
+Speaker 1:
+And how many years have you worked on software engineering?
+Speaker 2:
+This does not include my university education, right?
+Speaker 1:
+Yeah.
+Speaker 2:
+Six months.
+Speaker 1:
+What is your educational background?
+Speaker 2:
+I have done a bachelor's in engineering. Right now I'm doing a PhD, and I'm in my second year. And in the middle of that I was a research assistant at a lab for six months.
+Speaker 1:
+Where did you learn about machine learning knowledge?
+Speaker 2:
+You mean, how did I first encounter machine learning?
+Speaker 1:
+Yeah.
+Speaker 2:
+I took an entry course on machine learning just to gain more knowledge, and that was my first contact with machine learning.
+Speaker 1:
+And where did you learn about software engineering?
+Speaker 2:
+During my coursework at the university.
+Speaker 1:
+Roughly, how many machine learning projects have you worked on?
+Speaker 2:
+I would say six, seven.
+Speaker 1:
+And how many software engineering projects have you worked on?
+Speaker 2:
+Two.
+Speaker 1:
+Do you work in a team, or you work individually?
+Speaker 2:
+Both.
+Speaker 1:
+What do you mean by, "Both"?
+Speaker 2:
+Some projects I've worked on individually, and some projects I've worked on in a large team.
+Speaker 1:
+Okay. When you are working at a team, what is the size of your team? How many people are-
+Speaker 2:
+On an average, it's 5-6. The maximum has been 10. The minimum has been 2... something like that.
+Speaker 1:
+What kinds of models have you worked on? This can be computer vision and [inaudible 00:03:16].
+Speaker 2:
+I have worked with all three. I've worked with audio models. I've worked with vision models, video and image models, both. I've very briefly worked with text models also.
+Speaker 1:
+Okay. So, think about the projects where you or your team re-engineer a machine learning model using the research papers or some existing implementations. What are your goals when you re-engineer such a model?
+Speaker 2:
+Can you repeat the question once?
+Speaker 1:
+Think about the projects where you or your team re-engineer a machine learning model using the research papers or existing implementations. What are your goals?
+Speaker 2:
+Our goals when we are re-engineering models or implementations is, number one, we are able to match the results which are reported using that implementation, and we are able to get similar performances on similar structured data sets. That is our first aim whenever we re-engineer ML model implementations.
+Speaker 1:
+And is there a second one?
+Speaker 2:
+Yeah, the second one is very basic. It's just to modify it to or go into our needs while making sure that we don't break the implementation. With any project, I can try out various loss functions, but I have to ensure that the efficiency of the library is not harmed. Because I can plug in a loss function which is not optimized, and that would bring down the performance of the whole package.
+Speaker 1:
+Okay. The next set of questions is related to the machine learning re-engineering process workflow. We are trying to understand the process workflow that software engineers follows as they try to bring machine learning research results into their own organizations. Can you talk me through the process that your team follows to re-engineer a machine learning model from research paper or existing implementations or the projects from another engineers?
+Speaker 2:
+The first thing, as with every project, is to look for problems papers and implementations which are very close to ours. The next set of constraint that we take on is the response time and the ease of implementation. So, usually, with bigger teams, only a handful of people may be experienced with the kind of data we are dealing with
+Speaker 2:
+For example, with speech, it's very difficult to find people who have already worked on speech, but it's very easy for us to find people who have worked with pre-trained deep models before. Usually, we have this kind of constraint. So, we look for implementations which are very quick to start with, which have a very good API to start.
+Speaker 2:
+Once we have that place in mind, with industrial projects, we look at response times and a rough estimate of whether that package would be deployable. Finally, we also look at whether how maintainable would it be if we give it to people who are less familiar with machine learning. This would be a requirement.
+Speaker 1:
+Then I'd like to show you a process workflow here. Let's take a look at this workflow. I will pause the record for a minute, and then I will ask several questions related to that. So, you can tell me when you are ready. So, first, can you tell me if you think this is an accurate model?
+Speaker 2:
+Yes. It's almost the same thing as we do with all of our projects here.
+Speaker 1:
+Okay. If you would change anything here based on your team's actual process?
+Speaker 2:
+Code review perhaps would be a bit more distributed. For example, here it looks like a part of the final pushing pipeline. The code base grows very quickly, and smaller, continuous code reviews integrated with the middle pipeline prune out bugs much more quicker. At least this is what we have observed. One thing that is missing here, I would think, is multiple deployments. And finally that final training and publish, which is the last step. But, usually, this whole pipeline, at least the middle and the last part, they both happen together across multiple releases of the model.
+Speaker 1:
+Okay. This workflow does not contain a visual engineering stage. So, I'm wondering that your re-engineering work involves such a stage?
+Speaker 2:
+Yes, it does.
+Speaker 1:
+So, where should we add this stage in this diagram using?
+Speaker 2:
+What would happen is, a model understanding analysis and existing implementation would go to feature engineering, and both of them would include feature engineering, but it would occur after the model understanding analysis or when we pick up the existing implementation. So, essentially, when you branch out into two, you need to come to feature engineering, and then you again branch out. So, somewhere there.
+Speaker 1:
+Okay. So, in your re-engineering process, how do you measure your success?
+Speaker 2:
+We measure our success by how close we are to the existing results and how close we are to similar structured data sets on which the original results were reported on. These two are the primary metrics for initial success with model re-engineering.
+Speaker 1:
+Would you like to add any back edges in this diagram?
+Speaker 2:
+Probably, in the first part where model understanding analysis happens, the next is your version, I would add a back arrow back to model understanding and analysis. I think existing implementation is downwards, but in general, with machine learning papers, it's always not entirely obvious what is the workflow that the paper proposes.
+Speaker 2:
+So, you really have to invent some things which are missing from the paper, and that adds a new understanding about the model. So, perhaps there would be a package from your version to model understanding back. Whatever you plug in to complete the model understanding in the paper, would update your understanding.
+Speaker 1:
+Okay. The next set of questions is related to the pitfalls in such process. We are trying to find hot spots in this process. Are there any hot spots in the machine learning re-engineering process? Or which parts do you think are challenging when re-engineering a model?
+Speaker 2:
+I would say reproducibility, especially when we deal with industry projects, because customers or clients are not really aware about the stochasticity in machine learning models. Across the same data set I can get very two different sets, very different results, and it's hard to explain. And also, it's hard to explain if I have these kinds of input variations, I will get this type of output variations and this kind of outputs. First of all, this thing is not clear. Second thing, it's hard to form an association between the input and output, especially for large learning models.
+Speaker 1:
+For the reproducibility in your process, can you pick three blocks in this workflow that are most challenging?
+Speaker 2:
+I need to pick steps here which are most challenging?
+Speaker 1:
+Yeah.
+Speaker 2:
+I would say model code optimization. I would say reproducibility. And I would say testing. Testing is not hard in itself, but the problem with testing is its completion. With usual softwares, you have a checklist of a test that you need to run, but with ML models, the errors and the problems and the bugs are fairly safe. So, you won't know. They are silent bugs. You will never know what happened until it goes to deployment. Then you start getting analytics in the deployment.
+Speaker 1:
+Okay. Can you tell me about an arrow you found in your implementation or here, your version?
+Speaker 2:
+Arrow as in?
+Speaker 1:
+This can be some traditional bugs or bad performance or memory exhaustion.
+Speaker 2:
+I don't understand. Can you repeat this question? What do I do here?
+Speaker 1:
+I mean, can you tell me a bug or an arrow you found in a loss function, a model, or a data pipeline?
+Speaker 2:
+Back arrow... probably, the data pipeline. If you pick a paper to implement or pick the methodology to implement for your project, data pipeline is probably the one you can fiddle the most with.
+Speaker 1:
+Can you describe how do you or your team address the challenges in data pipeline?
+Speaker 2:
+For example, with speech systems, your speech input can have a lot of noise. And that would hamper your model performance, especially, because most of the model implementations out there are not reported on very real-world noisy data sets. One difficult thing in the data set is to denoise the outputs.
+Speaker 2:
+The other thing is to look at, for example again with audio, because I have most experience with audio, are simple things like sampling rate, bit rates and stuff like this. What I want to say is that, within the data pipeline, you need to address a lot of things about making sure that you closely match the input which was giving the best results for a particular reported model. And usually, that is not very clear. So, you need to invent a lot of things along the way... extrapolate.
+Speaker 1:
+Okay. And can you describe any challenges you met when in the evaluation, optimization or documentation?
+Speaker 2:
+When in evaluation, optimization and documentation... Like I said, with evaluation, we don't really know what's the best metric to evaluate our pipeline on, especially when we need to ensure that the end users, the clients, would have to use this. We will have to explain them the model results. For example, it might be the case that you add thousands of hours of data only to get 1% of improvement, but the first thousand hours of data gave you 20% improvement.
+Speaker 2:
+With respect to optimization, one favorable thing about ML models is that you get these models in nicely packaged libraries like PyTorch or TensorFlow. Many times the code optimization you can do is best restricted to the Python API of these things. In order to make further code optimizations, even if you know how to make those, the language barrier exists. I mean, not everyone is extremely good at C++. So, modifying these implementations is a challenge. I think documentation is one part which seems all right.
+Speaker 1:
+Okay. So, do you think it's challenging when you combine each component together, this may be under the component integration?
+Speaker 2:
+You're asking that all of these things can be in the component integration part? Or was the question something else?
+Speaker 1:
+I mean, have you met any challenge when you cascade the-
+Speaker 2:
+Okay. Yes, because multiple people can write the different components in various styles. For example, I can be extremely efficient and write everything with NumPy operations, whereas my other colleague can write everything in loops. And essentially, when I integrate these things together, I get a huge increase in response time, after which it would be hard to really know which component is going wrong.
+Speaker 2:
+Of course, unit tests would give me something, but that's one challenge. Other challenges, if there is a library barrier. So, for example, let's go back to 2018, and let's assume that transformer language models were only written in TensorFlow, and in these two years no one was able to port them to PyTorch, and my project has a hard requirement of using transformer language models. So, now I would have some modules in Python and some models in TensorFlow, because my team only knows how to use PyTorch. This would be a disaster during component integration.
+Speaker 1:
+So, how did you solve this problem?
+Speaker 2:
+How I solved this problem? Either I would ask all of my team to move to the TensorFlow, for this example, or we will try to implement that thing from scratch, assuming that we have enough compute to make those models. And after that, assuming that we would be able to do that operation in the same [inaudible 00:20:11] here as the original losses. With machine learning, the way you implement some things can have drastic change in results. So, we also have to take care of that.
+Speaker 1:
+Okay. So, based on your experience, I'm wondering if you can think of one or two changes to the processes, the tools, the artifacts that would make this process more easier?
+Speaker 2:
+I mean, the component integration part is not really something which your pipeline can fix. I mean, it's project-dependent. For example, the example which I just gave that my pipeline would not really help. I mean, one thing I can do is, I can have a training session. I don't think that fits in this process workflow, but after understanding the model or looking at the existing implementation, I can keep some buffer where my colleagues can prepare for such kind of complex integration. Apart from that, I don't think we can do much to this workflow which would help us.
+Speaker 1:
+Okay. The next set of questions is on the effective re-engineering practices. We'd like to know what practices you and your team adopt in your re-engineering process. So, first, have you ever reused any pre-trained models in your projects?
+Speaker 2:
+Have I ever used?
+Speaker 1:
+Reused any pre-trained models?
+Speaker 2:
+Yes, of course.
+Speaker 1:
+How do you assess the viability for reusing such pre-trained models?
+Speaker 2:
+If it's a commercial project, they have to be commercially usable. They have to be trained on data sets which are commercially usable, because that's one thing that you're always not entirely sure of. But maybe the authors allow you to use their models for commercial uses, but the data sets on which the authors trained they were not for commercial use. So, that's one very important aspect.
+Speaker 2:
+The next aspect is, of course, the response time and stuff like this. And finally, the pre-trained models are very large, and using them for deployment would not be helpful to us, because these models are extremely large to deploy. A very good example is [inaudible 00:23:03]. Primarily, our concerns are it's commercial, it's license, and it's memory size and response time.
+Speaker 1:
+Okay. How does your team work together to make the process more effective?
+Speaker 2:
+The re-engineering process?
+Speaker 1:
+Yeah.
+Speaker 2:
+We would try and ensure that when we re-engineer the model, the estimates of response time and memory we get hold across multiple machines. We try and ensure that our implementations, if we are re-engineering and we are modifying some things like the loss function or something like that, it's consistent with multiple members. I would ask one more member to implement this, and the results are consistent across implementations when they don't know how those people implement it.
+Speaker 2:
+They don't know about each other's implementation, if there's a contradiction we would see. And that contradiction usually helps us judging, especially when the papers don't mention how that particular model was implemented. And reviewing each other's code, that's pretty much it about re-engineering process across team.
+Speaker 1:
+How do you decide an existing implementation is trustworthy?
+Speaker 2:
+What would be trustworthy in this context?
+Speaker 1:
+It means, you can trust maybe the performance of the model or the documentation of the model.
+Speaker 2:
+I think, for example, if you're cloning from GitHub, I would look at the stars and the issues. If the repository has some stars and the author is very active commenting on the issues and solving them, I think the library would be trustworthy, even if in the future there are some problems.
+Speaker 1:
+Okay. So, what do you think other engineers can do differently in their implementations? They can be the engineers contribute to open source projects or groups in companies or some other researchers.
+Speaker 2:
+Your question is, what can we do as engineers to make this thing more efficient?
+Speaker 1:
+I mean, what can other engineers do differently in their implementations to make your process more effective?
+Speaker 2:
+Like have a lot of APIs, not only for the main training pipeline, but other things?
+Speaker 1:
+Yeah.
+Speaker 2:
+If they have implemented something novel for their project, for example, some novel loss function or something like that, perhaps leave them separately as a class so that we can readily pick it up and use it in other projects. Because I remember, in 2020 there was this very nice paper which proposed something, and they gave their loss function separately in the readme so that anyone can pick those up and use them. That was very nice.
+Speaker 2:
+What else can they do? Of course, extensive documentation, especially if someone's method is very new. For example, in ASR, in automatic speech recognition there were very different new models, and some of them were extremely commented, and some of them had very few comments. So, it was a hard time for us to sit down and see what is happening.
+Speaker 1:
+What do you find is helpful or harmful in a research paper?
+Speaker 2:
+Can you repeat the question?
+Speaker 1:
+What do you find is helpful or problematic in a machine learning research paper?
+Speaker 2:
+What is problematic in a research paper?
+Speaker 1:
+Yeah. So, maybe some problems that make it hard to understand or make it hard to re-engineer.
+Speaker 2:
+In terms of understanding, I would say completion and too much reference to the citation. For example, I can just say that this also did this or this, and I can have mentioned everything with their citation. And that would make it very difficult for me to go here and there. But in terms of ML re-engineering, I think not specifying their method perfectly.
+Speaker 2:
+For example, if I say that I'm doing this extremely exotic step to ensure that my inputs are of a much better quality, now I can just briefly mention them in one line, or I can make an effort to write some pseudo code of the algorithm that I use in the supplementary at least so that later, when I re-implement, the reproducibility and the adoption of the paper increases.
+Speaker 1:
+So, are there any existing tools or some other technologies you found valuable or problematic for the re-engineering process? For example, the owner adds some testing tools, some visualization tools.
+Speaker 2:
+TensorBoard is very useful for everything. Hugging Face has taken the transformer language models and heavily increased it. The documentations are nice. The APIs are very nice. They have even reviews tutorials to do things. These are some examples of libraries and tools which have been very helpful.
+Speaker 2:
+Problematic... For example, some time back I used this Kaldi toolkit for speech recognition, and its documentation was extremely bad. I mean, the code was not really commented a lot, and the code was in C++. The documentation was lost here and there. There was no order in the documentation.
+Speaker 2:
+Much of the things that I wanted to do, I found them in forums and by asking. There was no data flow across modules. Usually, with every library, you are able to estimate if the authors have provided a data flow for their whole model, but with Kaldi, I faced the issue that there was none of it.
+Speaker 1:
+Okay. How do you determine the acceptable trade-off between the performance of the model and the cost of your team? The cost can be the time or the money.
+Speaker 2:
+Trade-off between the cost money and?
+Speaker 1:
+Yeah.
+Speaker 2:
+The trade-off between cost, and what was the first thing that you said?
+Speaker 1:
+I mean the trade-off between the performance of the model and the cost.
+Speaker 2:
+Okay. I think one indicator is the time which is given to us to train the models. For example, if the model trains in one week, I would like to keep two weeks just in case someone made a very small mistake during training so that we have at least one pass again through the model. The cost associated with this would be the delay cost and the compute cost. That's one trade-off that I have to make, the trade-off based on the deployment timelines.
+Speaker 2:
+The other thing is the compute. If I'm only given certain amount of compute for certain few hours, I would pick up the smallest model where with the largest batch size I can quickly train some model. So, these would be the two kinds of things which I use for trade-offs in this area.
+Speaker 1:
+Okay. The last set of questions is comparison between machine learning re-engineering process and other software engineering process. We are trying to find a specific feature of this re-engineering process. So, first, in what ways do you think the re-engineering process is a scientific effort and in what way is an engineering effort?
+Speaker 2:
+The scientific part of ML re-engineering would be when you try to take existing models and apply them to similar or some different kinds of data. I would count that in the scientific aspect, because different kinds of data can expose different kinds of patterns exhibited while training these models. For example, you may achieve a lot more bad minimas in your model training if you pick certain kinds of noisy data with the same pipeline. Those kinds of data aspects can be treated as scientific.
+Speaker 2:
+The software engineering aspects are properly devising tests which also take care of failures which don't show themselves during development. Component unit testing of individual modules in your machine learning pipeline like loss functions or the training iterations, they need to be individually tested. For example, it might be the case that somewhere in your exotic loss function your memory is leaking. So, those things would be more of the software engineering aspects.
+Speaker 1:
+Okay. What do you think are different aspects of machine learning area engineering compared to a general machine learning developing process?
+Speaker 2:
+What are the...
+Speaker 1:
+I mean, compare the re-engineering process to a developing process.
+Speaker 2:
+They're almost the same, except with re-engineering, you pick up an existing model. The rest of the steps are the same. It's just that in general machine learning development process you have control over the whole pipeline, but with the re-engineering process, your pipeline is extremely dependent on the type of pre-trained model you pick up.
+Speaker 1:
+Can you talk about the difference between machine learning re-engineering process and a general software engineering process?
+Speaker 2:
+With software engineering, you can write deterministic unit and integration tests for any software. But, like I've been saying during this interview, with machine learning, you don't really know which test you write. You don't know where the code is leaking memory, stuff like this. It's very hard with machine learning models compared to general software engineering where everything is very deterministic.
+Speaker 1:
+Okay. So, what recommendations or suggestions would you like to provide to those who are experts in machine learning, but novice in software engineering if they are involved in such a re-engineering process?
+Speaker 2:
+First of all, I would recommend them learning about testing in general, because the only kind of test they do is, they would just pass some vector, and when the output comes out, they would say, "Now this works." So, one recommendation that I would have for them is, not only learn about the testing which standard software engineering people do, but also learn a lot about the modality you are using for that project.
+Speaker 2:
+For example, you might know everything about testing when you're developing speech systems. But if you don't know some fundamentals of audio, it might be the case that I can send you a 16K and a 48K sampled audio file, and since you don't have any idea about audio systems, you might not be able to figure out that the audios are different with respect to sampling rates, and hence any amount of software engineering skill won't help you there.
+Speaker 1:
+And is there any other suggestions that you would like to provide engineers who are experts in software engineering, but novice in machine learning?
+Speaker 2:
+I would say he should have some patience with machine learning, because with software engineering, everything is so deterministic. And with machine learning, random things can start blowing up, just because your model was designed in such manner. This is a very vague advice, patience with machine learning models.
+Speaker 2:
+And what else? And, of course, they would have to understand some part of machine learning. Just like machine learners have to learn something about software engineering, it goes the other way around also so that they are at least able to look at the pipeline and perhaps design sensible tests.
+Speaker 1:
+Can you describe some challenges specifically related to the instability in machine learning program?
+Speaker 2:
+Related to?
+Speaker 1:
+Yeah, maybe numeric instability in machine learning?
+Speaker 2:
+I was not able to hear properly one of the questions. Can you repeat that?
+Speaker 1:
+Can you describe any challenges on the numerical instability in why you re-engineer the machine learning model?
+Speaker 2:
+Numerical instability... There are many things in numerical instability. Do you want to perhaps narrow down the scope of this...
+Speaker 1:
+So, maybe when you are training, the loss sometimes just become to zero or...
+Speaker 2:
+Yes, all right. Most of the time this issue happens, because, at least with PyTorch, people prefer to do training on mixed precision. A very specific example is when there are some loss functions which try to reduce as sum. I mean, they would sum all the loss values of your data batch. But if you're using mixed precision with this thing, you're going to blow up the loss, because your loss function cannot handle those very big numbers.
+Speaker 2:
+So, either you would have to change the direction, which would change the loss function, or you would have to increase the precision, which would have an effect on your training time, because a kind of precision would take a lot more time than mixed precision or 16 precision. This is the only issue that I have faced in my life with respect to numerical instability. Other times, when you get numerically unstable results, it's usually because there is something wrong with your inputs. Perhaps the inputs are wrong.
+Speaker 1:
+Okay. That's all the questions for the interview. Are there any other questions you'd like to ask or you would like to know from other engineers which is related to such a re-engineering process so we may include your questions in the future interviews?
+Speaker 2:
+If this thing is covering both software engineering, machine learning, I would keep more of your software engineers and let them tear apart machine learning. Because usually, your typical software engineers don't really like ML, just because how hard it makes your life, because things are very specified by the developers. So, those pool of opinions may be useful for your study.
+Speaker 1:
+Yeah. Okay. So, that's all for our interview. I may stop recording now.
+

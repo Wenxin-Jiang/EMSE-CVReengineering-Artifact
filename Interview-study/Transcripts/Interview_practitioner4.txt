@@ -1,0 +1,236 @@
+Speaker 1:
+Okay. So, first I'd like to ask you, have you signed the consent form yet?
+Speaker 2:
+Yes, I think so.
+Speaker 1:
+Okay. This interview is related to the re-engineering process of machine learning models. We have five sets of questions here, background, the process, workflow of this process, the pitfalls in this process, the effective practices and other others. So, first, I'd like to ask some warm-up questions for our interview in order to know more about your background in machine learning and software engineering. The background questions can be answered briefly so that we can save more time for the other interesting questions. So, first, could you please estimate your machine learning expertise level. You may use novice, intermediate, expert, or master.
+Speaker 2:
+I'm not sure what's a level defined by master, but I always think I'm an expert to do that, because, based on my entire career experience, I use machine learning and deep learning and probably more focus on the NLP stuff. I do it a lot, and I try to use them to implement into a real industry. So, I consider myself an expert.
+Speaker 1:
+And could you please estimate your software engineering expertise level.
+Speaker 2:
+I would say, it should be expert as well, because I do full stack engineering right now. I not only focus on the machine learning stuff I do, because if you're an engineer, you need to do that.
+Speaker 1:
+Okay. How many years have you worked on machine learning and software engineering professionally?
+Speaker 2:
+Probably three years.
+Speaker 1:
+Maybe separate these questions. So, first, how many years have you worked on machine learning?
+Speaker 2:
+Probably one year on machine learning. When I just graduated... no, not graduated... I quit my PhD candidate. I work on the risk stuff. I use machine learning like the logistic regression and the XGBoost algorithm to predict what was the default rate for a person to loan money stuff. I worked on that, just basically like the PayPal stuff.
+	It's more related to machine learning, because we need the model to be explainable. And for our clients, they don't understand the deep learning or machine learning. They have no idea about machine learning or the data stuff. They just try to use what they have and to minimize their risk to loan money to people. So, that's more about machine learning I think.
+	Right after this, I have a startup experience. I use deep learning on the e-commerce industry. We use streaming, and we use the computer vision or re-enforcement learnings techniques to try to find something that we can do to optimize the entire works process, like we use the CV techniques to analyze how the streamer performs this time when they just selling products to the audience, if they have a smile or they have that big shout to them and what they're positive for the final results or not.
+	That's what we do. It's more about CV and computer vision stuff and a little bit of NLP, because when the streamer say something, I want to know if they make the correct. Or they really have to say that, we need to analyze them, more like the video data analyzes stuff. I personally just developed a platform. It's still ongoing right now. I personally just developed a platform for people to use the streaming data to optimize their decision making stuff in e-commerce industry. That's what I did.
+	And after that, I went to Baidu. It's more like to use the NLP or some graph neural networks techniques to optimize how the banks or the virtual capital stuff, the finance industry, to use like the table recognition or this chatbot for them. It's more like that. So, it's more focused on the NLP. So, probably, if I just separate my entire career, one year is probably machine learning, and the next two years are more about the deep learning stuff.
+Speaker 1:
+Okay. And what about your software engineering experience? How many years have you worked on that?
+Speaker 2:
+Software engineering experience... probably three years. I use software engineering techniques entirely, because I'm not only develop models for our other groups, I also need to design some RESTful API for our clients to use. So, software engineering stuff, I should say three years. I do it a lot.
+Speaker 1:
+Okay. What is your educational background?
+Speaker 2:
+I graduated from the University of Delaware as my bachelor's degree, and I am an applied economics major. It's more like the ecometrics stuff. My master and the PhD candidate parts is in the Illinois Institute of Technology. It's not far from the Purdue, I think. It's in Chicago. I worked on financial engineering. And right now the financial engineering industry is more about the machine learning as well as statistics.
+	Right now, for the current academic environment, I think the statistics is really highly related to machine learning stuff. So, I work with data all the time. I previously worked on some projects about the HFT, the high-frequency trading. I use the previous time series data to predict how the stock predicts signals actually.
+Speaker 1:
+Okay. So, where did you learn about machine learning and software engineering?
+Speaker 2:
+Basically, I learned from Coursera by myself. At first, I learned from there. And the software engineering, I should say, I learned by myself in my work. When I first get into the industry, and I have a really good mentor, and he has really decent software engineering stuff. He teach me a lot and help me to build the entire application for [inaudible 00:07:41].
+Speaker 1:
+Okay. Roughly, how many machine learning projects have you worked on?
+Speaker 2:
+Roughly speaking, about 10 plus, I should. Yeah, a lot.
+Speaker 1:
+And how many software engineering projects have you worked on?
+Speaker 2:
+I should say, all the machine learning projects, finally, is related to a soft engineering project. Every machine learning model, I need to find a place to deploy them. So, if I say 10 plus machine learning projects, I should say 10 plus or 15 plus software engineering project.
+Speaker 1:
+Currently, do you work in a team or individually?
+Speaker 2:
+Work with a team.
+Speaker 1:
+How many people are there in your team?
+Speaker 2:
+Let me count... seven. It's about the deep learning groups, and they still have some engineering groups who majorly works on the engineering stuff. They're slightly different with us.
+Speaker 1:
+What is your role in your team?
+Speaker 2:
+The AI engineer.
+Speaker 1:
+Okay. What is the size of your company?
+Speaker 2:
+What is the size of my company? Or what do you mean by that?
+Speaker 1:
+You may use small, medium, or large.
+Speaker 2:
+I should say, large. It's really large. We got 50K employees in our company. 
+Speaker 1:
+Now, please think about the projects where you or your team re-engineer a machine learning model using research papers or other existing implementation.
+Speaker 2:
+I should say both. Sometimes I need to read a lot of research paper. I just read a paper about the graph attention neural networks. That's a really cutting edge techniques right now, and we are trying to use that to optimize or improve the table recognition stuff.
+Speaker 1:
+What are your goals of re-engineering such model?
+Speaker 2:
+Get a better accuracy, generally speaking. And sometimes we need to show off to our clients that we have a really cool deep learning techniques. So, generally speaking, we need to do all about the accuracy. 
+Speaker 1:
+Do you adapt the existing model to some different tasks?
+Speaker 2:
+Yes. If our group need to do something about the natural language processing, we probably start with the BERT. 
+Speaker 1:
+Okay. The next set of questions is related to the machinery engineering process. We are trying to understand the process workflow that software engineers follows as they try to bring machine learning research results into their own organizations. So, can you please talk me through the process that your team follows to re-engineer a machine learning model from research paper or existing implementation or another engineer's project?
+Speaker 2:
+Okay. Maybe the project I just have wrapped up with last month will be a great example. It's about the table recognition. It's not that related to machine learning. It's more about the graph neural networks, but it's kind of related to the topic. So, firstly, we got the research paper online. It's written by the... I forgot... probably, OpenAI people, and the research on the graph attention neural networks. We find that the smallest concept in these neural network is a node.
+	When we're talking about table the smallest concept is the cell. So, the cell we think about can be a node. And the topology relation with other cells, we can consider them as a whole graph. So, when we have that, we can do some experiments. We can use the graph neural networks predict the topology structure of the whole table. It probably works. So, we just have some open source code on GitHub, and we just clone it to our machines, our server, and do some experiments from some open source data, or we label some data for ourselves.
+	So, finally, we found, "Oh, we got a good result, or we got a decent accuracy that we can use them for some scenario or some specific industry work." After that, we need to have a report that we have a new model and the model is decent and in some specific scenario is better than the previous one that we developed before. Finally, the engineering team will help us to put the model in our group, the big groups platform for our client to test it on. I would call that as a end of our entire re-engineering projects.
+Speaker 1:
+Okay. I will show you a process workflow. Here is a process workflow. Let's take a look at this workflow. I will pause the record for a minute, and then I will ask several questions related to this workflow. You can tell me when you are ready.
+Speaker 2:
+Okay.
+Speaker 1:
+So, can you tell me if you think this is an accurate process workflow, or if you would like to change anything here based on your team's actual process?
+Speaker 2:
+I would say, it's a really decent process. It's not at the end to do the documentation. So, we probably need to do the documentation at the really beginning of this entire project. 
+Speaker 1:
+So, you mean right after your version here?
+Speaker 2:
+I would put the documentations right after the model selection. It comes with model understanding and analyzing stuff.
+Speaker 1:
+Okay. This workflow does not contain a feature engineering stage. So, does your re-engineering work involve such a stage?
+Speaker 2:
+I think so.
+Speaker 1:
+If so, where should we add this stage in this diagram that you see?
+Speaker 2:
+Wait. Are we trying to add the new stage, or you want to try to add the documentation stage to...
+Speaker 1:
+The feature engineering stage here.
+Speaker 2:
+Feature engineering stage?
+Speaker 1:
+Yeah.
+Speaker 2:
+Okay. Really, it should be before model selection. Especially when I work with some machine learning project in my first job... Right now for the machine learning stuff, especially for the risk department, the model is not important. Because machine learning model, if we want to explain the result, we use logistic regression. And if we want to use more performance, we use XGBoost stuff.
+	So, the model selection is not big part of our work. The feature engineering is really main part. It costs probably 70% of our work time to do that. We need to come up with new features to do that. So, I will put feature engineering right before the model selection.
+Speaker 1:
+Okay. How do you measure the success of your re-engineering process?
+Speaker 2:
+7 out of 10, I should say.
+Speaker 1:
+So, does that mean 7 out of 10 the performance of the original implementation?
+Speaker 2:
+Yeah.
+Speaker 1:
+Okay.
+Speaker 2:
+Because sometimes the research paper is not that high quality. I don't offense to anyone, but sometimes the paper with code, it's really like they just want to release this paper for their graduation stuff. That's what I thought. Coursera, GitHub, or the open source code that they released, it's made zero sense to me. I don't know if you understand what I mean, but that's what I want to say.
+Speaker 1:
+Yeah. So, would you like to add any back edges in this diagram?
+Speaker 2:
+Probably not.
+Speaker 1:
+Okay. Then we have the next set of questions is related to the pitfalls in machine learning engineering process. We are trying to find hot spots in this process. Are there any hot spots in the machine learning re-engineering process, or which parts do you think are challenging when re-engineering a model? You can use the workflow here.
+Speaker 2:
+I should say, model analysis is really challenging if we're talking about machine learning projects.
+Speaker 1:
+Yeah.
+Speaker 2:
+For machine learning projects, the engineer probably will be more like the data scientist. They works more on data analyze, and the feature engineering stuff works more with the data. The really simple example is, sometimes they don't need to consider if they are using GPU or not, because a lot of time, they don't need to. Why you need to use GPU for logistic regression? That make no sense. So, more like the data scientist and stuff.
+	So, I should say, the most challenging stuff is the model analysis, what we call the EDA. The empirical data analysis part is more challenging. And right after this, there's the data pipeline unit testing and the reproducibility review model optimization. It's not that time consuming, I should say.
+Speaker 1:
+How do you address the challenges in the EDA stage?
+Speaker 2:
+Some people, when they just started with machine learning industry, they probably would start some projects in Kaggle. That's most people start with. So, those data are really good. They have not that much non-data, and the feature has already selected really well. We should say the data is really clean in their project. But in the real industry, they got a variety problem in that. Sometimes we got one feature has no number in that. Sometimes the feature just have their contributions to our prediction process.
+	I should use the logistic regression example, because that's the most familiar with me. We calculate the IV value, the information value of the feature and find out if they really have impact in our prediction. And sometimes we need to make some bins on the features to have the really good shape. We categorize the whole data. Sometimes with continuous data, it's not that good to help our robust of the model. So, sometimes we need to categorize the continuous data into several bins, and it do helps.
+	That's the most challenging part. But sometimes it's documentable, and the people have the really good process that they can follow. And finally, if the data is not that weird, the result should be decent. That's how most big company works. They want to make the process more productive, more efficiency. So, every time the new engineer entered, they just follow the process, and the project is good.
+Speaker 1:
+Okay. Can you describe any challenges you met when implementing a data pipeline?
+Speaker 2:
+I don't think that's a really big issue for us.
+Speaker 1:
+And what about the optimization and documentation in your team?
+Speaker 2:
+First, the documentation. Documentation is really important. It's more important than model selection, I think. That's a whole project start with. You need to document your ideas, and it should be reportable to your supervisor. A good documentation should be like, if a new engineer comes and they see the documentation, they can right start with the project without any question. That's a good documentation should be. It's really important.
+	And the model code optimizations... Sometimes in our company, the code optimizations, we do it together, the whole group. It's combined with the code review, I think, and sometimes different people can come with the different ideas of how to get a better code. So, it's also important, especially for a data worker.
+	Most AI engineer or machine learning engineer, they don't comes with a computer science background. They don't understand how to design good code, what kind of good code they can be, even though sometimes the engineering has no sense about the object or writing the programming stuff. Right now in the industry I will consider the code review is a big part of the project, even though sometimes don't think so.
+Speaker 1:
+Okay. Have you met any challenges when you cascade the components together?
+Speaker 2:
+I think, no.
+Speaker 1:
+Based on your experiences, I'm wondering if you can think of one to two changes to the processes, to the tools, the artifacts, that would make this process easier for you? You can think for a moment, and then let me know your thoughts.
+Speaker 2:
+Okay. So, your question means, do I have like my process that can make the project more easier? Is that what you mean?
+Speaker 1:
+I mean, if you can think of one to two changes to the existing processes? This can be existing in your company, or this can be existing maybe like a general process and as well as the tools and artifacts from the academia or the open source projects.
+Speaker 2:
+Okay. Let me see. The biggest part of the process that in your PowerPoint should be... I don't see anything related to data analysis. That's the most important part in the real industry stuff. Firstly, we start with the data analyze, and we pick out the data that we really need. And sometimes some data just mess the whole model prediction. We need to get them out of our project.
+	That's a really first. It probably will consume 30% of our entire project time. Right after this, we do the model selection. And the model selection is not only based on the performance or the accuracy. It's more based on the project itself. And if our clients want to have more explanation about our results, we will use some simple algorithm. That's how we do the model selection.
+	Okay, you got two branches... The model analysis is also important. It goes to the data pipeline, the model loss function. Actually, we don't choose loss functions. A lot of machine learning algorithm, they got a really decent structure about their algorithms. So, the loss function is not things that we need to worry about. And do some unit testing... Yeah, we do unit testing. I don't know if they call it unit testing or not, but we need to do some testing to compare with the previous work and if we get a better result or not. After that, you got really good process to get the evaluation testing stuff.
+	That's the machine learning project ends. And mostly, if we're talking about the smaller company like the startup company, most project end here. But if we want to do more real projects, we do the rest of the stuff, the reproducibility review stuff. The code optimization and the code review, I should combine them together. They're the same. And the documentation is at the really beginning of this project. And finally, it's published. That's probably the process that works.
+Speaker 1:
+Okay. Then the next set of questions is on the effective re-engineering practices. We'd like to know what practices you and your team adopt in your engineering process. So, first, have you ever used any pre-trained models in your projects?
+Speaker 2:
+Yes, we use BERT.
+Speaker 1:
+How do you assess the viability for reusing the pre-trained models?
+Speaker 2:
+It's based on the data we have, because sometimes, when they get into the fighting stage, we need to use some data that we labeled for our specific scenario to develop. And if we got a really good or really big data set... Let me see how to say that. First, we'll do some feature engineering, even though in some NLP project. We will find some keywords, put in really front of the sequence data and to make them have a big attentions which we'll extract from the model. When we use the pre-trained model, we still have a lot of time works on the feature engineering. But the feature is different with the machine learning project. It's more about how to encode the sequence data.
+Speaker 1:
+So, how does your team work together to make the process more effective?
+Speaker 2:
+I'm not sure if other teams work that same with us, but we team, probably, one engineering need to solo the whole project. They probably will start with the documentation and do the entire stuff and wrap up the project. If you said, "How they work together," if it's a really urgent project, we probably need to sign two people or three people focus down, one people to clean the data and one people to divide the model if they have did some similar work before. He's the person who will mainly focus on the project. And probably another person will focus on the functionality of the entire application to design, to do some engineering work developments. That's how the groups work.
+Speaker 1:
+I think you mentioned that your team have seven people there. 
+Speaker 2:
+Yeah.
+Speaker 1:
+So, I'm wondering, what about the other people?
+Speaker 2:
+We probably have multiple projects runs simultaneously. We have probably like five projects runs right now. 
+Speaker 1:
+Okay. Does that mean, one specific engineer should work on both the code and the documentations and also the testing?
+Speaker 2:
+We have testing people. We have QA people to do some testing, but right before we hand our model to the QA people, we need to do some testing before.
+Speaker 1:
+So, how does your team give new iteration of the models between the QA people and the engineers?
+Speaker 2:
+Can you say it again?
+Speaker 1:
+How does your team give out the new iterations or new modifications of the code between the QA people and the engineer?
+Speaker 2:
+Actually, they don't care about the modification of the model. They care about if the accuracy increase or not, or if the model runs more fast or not. That's what they're concerned about. They don't care about how we modify the model.
+Speaker 1:
+How do you decide an existing implementation is trustworthy?
+Speaker 2:
+How do I define the existing implementation trustworthy? First one, if the model is explainable or not. And the next, if they have the open source data that we can use. If they just give us a model or how they trained model, we hardly can learn something from the code that they provide. They should have the open source data and if I can re-implement the entire model train process. Finally, we gather some similar results with how the paper showed us, and I should say the existing implementation is trustworthy.
+Speaker 1:
+What do you find is helpful or problematic in a machine learning research paper? Or you can say, what could machine learning researchers do differently in their papers or their implementations to help you re-engineer the work?
+Speaker 2:
+Right now, for me, some research paper, especially in NLP industry, most of their works works on how to improve based on some existing implementation stuff. And that is not helping us, actually, because a lot of works more like the end-to-end application. We can use them in really, really specific scenario or the industry to implement this, and we hardly to do some optimization stuff. Because sometimes their model is like 300 million or multiple million parameters to works on, and it's hardly for us or for some small groups to do that. So, probably, if they can have more few-shot or zero-shot models, it will help. That's what I should say.
+Speaker 1:
+Are there existing tools or other technologies you found valuable or problematic for the re-engineering process? For example, the ONNX with some testing tools, some visualization tools?
+Speaker 2:
+Not that much that helps.
+Speaker 1:
+Okay. So, how do you determine the acceptable trade-off between the performance of the model and the cost of your team? The cost can be time and money here.
+Speaker 2:
+If you mean the performance is accuracy, I should say the accuracy is the first place. If the model needs some like 16 GPU to works with and we need two, three weeks to have 1% increase, that's not worth it. So, if we can quickly have the better accuracy model with near zero cost, that's what we're going to do.
+Speaker 1:
+I think the time is up. Let me ask you the last questions. In what ways do you think the re-engineering process is a scientific effort and in what way it is an engineering effort?
+Speaker 2:
+Can you see it again? Sorry, I was distracted.
+Speaker 1:
+In what ways do you think the re-engineering process of machine learning is a scientific effort and in what ways is an engineering effort?
+Speaker 2:
+For us, we are not infrastructure department. In our company, in Baidu, they have the specific NLP group to works on the model. They have better accuracy with lower time consuming costs. They works on model. And for us, it's more about engineering. We don't do a lot of the model optimization stuff. Sometimes we need to use a new model to put in our project, but that's not the model stuff. So, if you say in what ways about the scientific stuff, I should say, no, actually.
+	For engineering, we don't works on that. Some people works that and hand the model to us, and we need to find the industry or scenario that the model can works well. So, I consider our project as a iPhone. For us, we are more like the product team. We like to assemble or put all the components together to make a new phone. And the infrastructure team, they're more like to have better chips or better screen stuff. It's more like that. That's different. If you ask some people from the NLP groups, they probably work some more about the scientific stuff.
+Speaker 1:
+Are there any questions you would like to know or ask other engineers which is related to such re-engineering process? We may include your questions in the future interviews.
+Speaker 2:
+Yeah, if you can interview with the people what I just talked about, the infrastructure stuff, if you can interview some people with the DeepMind or the OpenAI stuff, I want to see how different it answered that with me.
+Speaker 1:
+Okay. Thank you very much for the time. I think that's all the questions for our interview.
+Speaker 2:
+Okay.
+Speaker 1:
+Let me stop recording now.
+
